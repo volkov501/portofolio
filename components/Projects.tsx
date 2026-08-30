@@ -15,6 +15,7 @@ export default function Projects() {
       badge: "HPC / AI INFRA",
       badgeColor: "text-yellow-400 bg-yellow-400/10 border-yellow-400/30",
       highlight: true,
+      liveUrl: "#", // TODO: ganti dengan link project
     },
     {
       title: "Smart Tactical Body Camera",
@@ -26,6 +27,7 @@ export default function Projects() {
       badge: "THESIS",
       badgeColor: "text-primary bg-primary/10 border-primary/30",
       highlight: false,
+      liveUrl: "https://cam.volkovindustry.online", // link ke project kamu
     },
     {
       title: "VmLepkom Infrastructure Modernization",
@@ -37,6 +39,7 @@ export default function Projects() {
       badge: "INFRASTRUCTURE",
       badgeColor: "text-secondary bg-secondary/10 border-secondary/30",
       highlight: false,
+      liveUrl: "#", // TODO: ganti dengan link project
     },
     {
       title: "Autonomous Drone & VTOL R&D",
@@ -48,6 +51,7 @@ export default function Projects() {
       badge: "AUTONOMOUS",
       badgeColor: "text-primary bg-primary/10 border-primary/30",
       highlight: false,
+      liveUrl: "#", // TODO: ganti dengan link project
     },
     {
       title: "IoT Server Environment Monitoring",
@@ -59,6 +63,7 @@ export default function Projects() {
       badge: "DIPLOMA",
       badgeColor: "text-secondary bg-secondary/10 border-secondary/30",
       highlight: false,
+      liveUrl: "#", // TODO: ganti dengan link project
     },
     {
       title: "IoT Wildfire Detection System",
@@ -70,6 +75,7 @@ export default function Projects() {
       badge: "CAPSTONE",
       badgeColor: "text-red-400 bg-red-400/10 border-red-400/30",
       highlight: false,
+      liveUrl: "#", // TODO: ganti dengan link project
     },
     {
       title: "Centralized Auth & Storage — CNN Indonesia",
@@ -81,6 +87,7 @@ export default function Projects() {
       badge: "BROADCAST IT",
       badgeColor: "text-purple-400 bg-purple-400/10 border-purple-400/30",
       highlight: false,
+      liveUrl: "#", // TODO: ganti dengan link project
     },
   ];
 
@@ -159,6 +166,26 @@ export default function Projects() {
                     {tag}
                   </span>
                 ))}
+              </div>
+
+              {/* Live Link */}
+              <div className="mt-4 pt-4 border-t border-slate-700/50 relative z-10">
+                {project.liveUrl && project.liveUrl !== "#" ? (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-mono text-primary hover:text-primary/80 transition-colors group/link"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform duration-200" />
+                    View Live Project
+                  </a>
+                ) : (
+                  <span className="inline-flex items-center gap-1.5 text-xs font-mono text-slate-600 select-none">
+                    <ExternalLink className="w-3.5 h-3.5" />
+                    Link coming soon
+                  </span>
+                )}
               </div>
             </motion.div>
           ))}
