@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Arrashi Satyadi - Resume</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 15mm 15mm 15mm 15mm;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #1a202c;
+      background: #ffffff;
+      line-height: 1.42;
+      font-size: 10pt;
+    }
+    a {
+      color: #0f4c81;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1.5px solid #2b6cb0;
+    }
+    .header h1 {
+      font-size: 20pt;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #1a365d;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+    .contact-info {
+      font-size: 9.5pt;
+      color: #4a5568;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-weight: 500;
+    }
+    .contact-info span {
+      display: inline-flex;
+      align-items: center;
+    }
+    .contact-info span:not(:last-child)::after {
+      content: "•";
+      margin-left: 12px;
+      color: #a0aec0;
+    }
+    .section {
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: 11pt;
+      font-weight: 700;
+      color: #1a365d;
+      text-transform: uppercase;
+      letter-spacing: 0.75px;
+      border-bottom: 1px solid #cbd5e0;
+      padding-bottom: 2px;
+      margin-bottom: 6px;
+    }
+    p {
+      margin-bottom: 5px;
+      text-align: justify;
+    }
+    .summary-text {
+      font-size: 9.5pt;
+      color: #2d3748;
+    }
+    .skills-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      font-size: 9.5pt;
+    }
+    .skill-row {
+      display: flex;
+      line-height: 1.35;
+    }
+    .skill-category {
+      font-weight: 700;
+      color: #2d3748;
+      width: 220px;
+      flex-shrink: 0;
+    }
+    .skill-items {
+      color: #4a5568;
+      flex: 1;
+    }
+    .item {
+      margin-bottom: 8px;
+    }
+    .item:last-child {
+      margin-bottom: 0;
+    }
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1px;
+    }
+    .item-title {
+      font-size: 10pt;
+      font-weight: 700;
+      color: #2d3748;
+    }
+    .item-date {
+      font-size: 9pt;
+      font-weight: 600;
+      color: #4a5568;
+      white-space: nowrap;
+    }
+    .item-sub {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 9pt;
+      color: #4a5568;
+      font-style: italic;
+      margin-bottom: 3px;
+    }
+    .item-company {
+      font-weight: 600;
+      color: #2b6cb0;
+      font-style: normal;
+    }
+    .item-location {
+      font-size: 8.5pt;
+      color: #718096;
+    }
+    ul {
+      margin: 0;
+      padding-left: 16px;
+    }
+    li {
+      font-size: 9.2pt;
+      color: #2d3748;
+      margin-bottom: 2px;
+      line-height: 1.35;
+      text-align: justify;
+    }
+    li strong {
+      color: #1a202c;
+    }
+    .edu-item {
+      margin-bottom: 5px;
+    }
+    .edu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .edu-degree {
+      font-weight: 700;
+      color: #2d3748;
+      font-size: 9.5pt;
+    }
+    .edu-school {
+      color: #2b6cb0;
+      font-weight: 600;
+    }
+    .edu-details {
+      font-size: 9pt;
+      color: #4a5568;
+    }
+    .cert-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      font-size: 9.2pt;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>ARRASHI SATYADI</h1>
+    <div class="contact-info">
+      <span><strong>Phone:</strong> 087735499904</span>
+      <span><strong>Email:</strong> <a href="mailto:folkov11@gmail.com">folkov11@gmail.com</a></span>
+      <span><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/arrashi-satyadi-476918241/" target="_blank">linkedin.com/in/arrashi-satyadi-476918241</a></span>
+      <span>South Jakarta, Indonesia</span>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="section">
+    <div class="section-title">Professional Summary</div>
+    <p class="summary-text">
+      Results-driven <strong>Network & IT Infrastructure Engineer</strong> with <strong>3+ years</strong> of hands-on experience in enterprise server administration, virtualization (VMware ESXi, Proxmox VE), Cisco networking, and AIoT/Autonomous Drone systems. Proven track record managing <strong>10+ IBM enterprise servers</strong>, supporting <strong>500+ users</strong>, and maintaining <strong>99%+ system uptime</strong>. Designed enterprise-grade <strong>AI server infrastructure</strong> (Dell PowerEdge R760xa, 4x NVIDIA H100 GPU) supporting up to <strong>2,000,000 concurrent users</strong> (total budget: Rp 16B+). Adept at bridging hardware, edge systems, and network infrastructure for high-reliability environments. Actively targeting <strong>Network Engineer</strong>, <strong>IT Infrastructure Engineer</strong>, and <strong>HPC/AI Infrastructure Engineer</strong> roles.
+    </p>
+  </div>
+
+  <!-- TECHNICAL SKILLS -->
+  <div class="section">
+    <div class="section-title">Technical Skills</div>
+    <div class="skills-grid">
+      <div class="skill-row">
+        <div class="skill-category">Networking & Protocols:</div>
+        <div class="skill-items">Cisco IOS, OSPF, BGP, EIGRP, VLAN, STP, EtherChannel, TCP/IP, DNS, DHCP, NAT, SSH, VPN, VRRP, GLBP, Load Balancing, Layer 2/3 Switching, Network Segmentation</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-category">Server & Virtualization:</div>
+        <div class="skill-items">VMware ESXi (vSphere), Proxmox VE, Hypervisor Management, VM Provisioning, Windows Server, Active Directory (ADDC), NAS Storage, RAID, NVMe, iDRAC9, IBM System Servers, Dell PowerEdge, Apache Guacamole</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-category">Data Center & HPC Infra:</div>
+        <div class="skill-items">Dell PowerEdge R760xd/R760xa, High Availability (HA), NVIDIA H100 GPU Clusters, AI Server Architecture, Budget Planning (RAB/LKPP/INAPROC), Enterprise Storage Architecture</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-category">IoT & Embedded Systems:</div>
+        <div class="skill-items">ESP32, ArduPilot, MAVLink, PX4, Flight Controllers, GPS (M10Q), MQTT, WebSockets, CGNAT Bypass, Firmware Integration, Flutter (IoT App)</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-category">Autonomous Systems / AIoT:</div>
+        <div class="skill-items">UAV/Drone System Design, VTOL (QuadPlane / Tilt-Rotor), Real-Time Video Telemetry, Edge AI Integration, RF Protocol Optimization</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-category">OS, Tools & Languages:</div>
+        <div class="skill-items">Linux (Ubuntu Server), Windows Server, Bash, Python, Wireshark, Docker, Git, FFmpeg | <strong>English:</strong> TOEIC 770/990 (Professional Working)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROFESSIONAL EXPERIENCE -->
+  <div class="section">
+    <div class="section-title">Professional Experience</div>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-title">Autonomous Drone & AIoT Engineer (Contract)</span>
+        <span class="item-date">Jan 2026 – Sep 2026</span>
+      </div>
+      <div class="item-sub">
+        <span class="item-company">Mitra Teknologi Gemilang (MTG)</span>
+        <span class="item-location">Depok, Indonesia</span>
+      </div>
+      <ul>
+        <li>Engineered autonomous drone systems (ArduPilot/MAVLink) for real-time crowd monitoring and riot detection at large-scale events, achieving reliable HD video and sub-200ms telemetry transmission.</li>
+        <li>Developed end-to-end AIoT data pipelines integrating embedded systems (ESP32, M10Q GPS, Flight Controllers) with cloud databases via WebSockets, bridging field hardware with centralized server infrastructure.</li>
+        <li>Spearheaded VTOL R&D (QuadPlane/Tilt-Rotor designs), transitioning from standard multirotors to enhance aerodynamic efficiency and extend autonomous patrol duration by ~40%.</li>
+        <li>Optimized Command & Control (C2) networks with custom RF protocols to maintain robust, low-latency command links in high-RF-interference environments.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-title">IT Infrastructure & Network Engineer (Freelance)</span>
+        <span class="item-date">Jun 2024 – Present</span>
+      </div>
+      <div class="item-sub">
+        <span class="item-company">Lembaga Pengembangan Komputerisasi (LePKom), Gunadarma University</span>
+        <span class="item-location">Depok, Indonesia</span>
+      </div>
+      <ul>
+        <li>Managed and monitored <strong>10+ IBM System enterprise servers</strong>, maintaining <strong>99%+ uptime</strong> and high availability through proactive monitoring and rapid fault resolution.</li>
+        <li>Installed, configured, and maintained <strong>50+ Virtual Machines and containers</strong> across VMware ESXi (vSphere) & Proxmox VE hypervisors.</li>
+        <li>Built a secure remote desktop environment using Apache Guacamole integrated with Active Directory Domain Controller (ADDC) for centralized student access.</li>
+        <li>Provided end-to-end IT support for <strong>500+ students</strong>; prepared and deployed <strong>100+ PCs and 100+ thin clients</strong>, including OS rollout, app configuration, and network IP provisioning.</li>
+        <li>Developed an IoT server room monitoring system (temperature, humidity, smoke) using ESP32 and Bardi smart devices with custom Flutter remote app.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-title">Network Course Instructor & Person In Charge (Part-Time)</span>
+        <span class="item-date">Oct 2023 – Present</span>
+      </div>
+      <div class="item-sub">
+        <span class="item-company">Lembaga Pengembangan Komputerisasi (LePKom), Gunadarma University</span>
+        <span class="item-location">Depok, Indonesia</span>
+      </div>
+      <ul>
+        <li>Delivered comprehensive Cisco networking instruction to <strong>100+ learners per semester</strong>, covering OSPF, BGP, EIGRP, VLANs, switching, TCP/IP, DNS, and network security.</li>
+        <li>Led hands-on lab sessions configuring and troubleshooting Cisco routers and switches aligned with CCNA/CCNP industry standards.</li>
+        <li>Authored official practical training module series (Fundamental, Beginner, Intermediate) for Cisco routing, switching, and network security for VmLePKom.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-title">IT Infrastructure Core System & Broadcast (Internship)</span>
+        <span class="item-date">Feb 2024 – Jun 2024</span>
+      </div>
+      <div class="item-sub">
+        <span class="item-company">CNN Indonesia (Trans Media)</span>
+        <span class="item-location">Jakarta, Indonesia</span>
+      </div>
+      <ul>
+        <li>Implemented and administered <strong>Windows Server Active Directory Domain Controller (ADDC)</strong> for centralized authentication and Group Policy management across the broadcast infrastructure.</li>
+        <li>Configured and maintained high-throughput <strong>NAS storage</strong> for centralized video file sharing, access permissions, and automated backups supporting live 24/7 broadcast operations.</li>
+        <li>Drafted the Broadcasting Resources Installation Manual and resolved server/network outages with zero broadcast interruption.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-title">Network Engineer (Internship)</span>
+        <span class="item-date">May 2021 – Sep 2021</span>
+      </div>
+      <div class="item-sub">
+        <span class="item-company">Pushansiber Bainstrahan, Ministry of Defence (Kemenhan RI)</span>
+        <span class="item-location">Jakarta, Indonesia</span>
+      </div>
+      <ul>
+        <li>Designed and implemented <strong>load-balancing and redundancy solutions</strong> using Cisco technologies (VRRP, GLBP) for national cyber-defense infrastructure.</li>
+        <li>Contributed to the Pushan Siber national cyber-defense network topology and built secure Data Center network infrastructure.</li>
+        <li>Configured and integrated <strong>10+ Local Area Networks (LANs)</strong> across client-server environments with SSH hardening, NAT, and VLAN segmentation.</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- KEY PROJECTS -->
+  <div class="section">
+    <div class="section-title">Key Projects</div>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-title">AI Server Infrastructure Architecture — "SaveMe!" Platform</span>
+        <span class="item-date">2026</span>
+      </div>
+      <ul>
+        <li>Architected a 4-tier enterprise infrastructure (General, AI, Realtime, Storage) powered by Dell PowerEdge R760xa to support <strong>100,000 to 2,000,000 concurrent users</strong>.</li>
+        <li>Specified high-density AI compute nodes: 2x Intel Xeon Gold 6760P (128 cores), 1 TB DDR5 ECC RAM, <strong>4x NVIDIA H100 PCIe 80GB GPU</strong>, and NVMe RAID10 storage.</li>
+        <li>Formulated official RAB (Rencana Anggaran Biaya) totaling <strong>Rp 16,009,267,392</strong> compliant with LKPP/INAPROC procurement standards.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-title">Smart Tactical Body Camera — Undergraduate Thesis</span>
+        <span class="item-date">2025 – 2026</span>
+      </div>
+      <ul>
+        <li>Engineered IoT tactical body-worn camera with ESP32-CAM and M10Q GPS, bypassing CGNAT via WebSocket Client Push Mode for low-latency video streaming to Node.js backend with FFmpeg evidence chain preservation.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <div class="item-header">
+        <span class="item-title">VmLePKom Infrastructure Containerization & Modernization</span>
+        <span class="item-date">2024 – 2025</span>
+      </div>
+      <ul>
+        <li>Migrated legacy multi-user Windows & Ubuntu VM environment into lightweight, isolated <strong>Docker</strong> containers, significantly slashing compute overhead for 500+ concurrent students.</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- EDUCATION & CERTIFICATIONS -->
+  <div class="section">
+    <div class="section-title">Education & Certifications</div>
+
+    <div class="edu-item">
+      <div class="edu-header">
+        <div><span class="edu-degree">Bachelor of Computer System (S1)</span> — <span class="edu-school">Gunadarma University</span>, Depok</div>
+        <span class="item-date">Sep 2022 – Sep 2026 (Expected)</span>
+      </div>
+      <div class="edu-details">GPA: <strong>3.89 / 4.00</strong> | Recipient of <strong>Full Academic Scholarship</strong></div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-header">
+        <div><span class="edu-degree">Diploma in Computer System (D3)</span> — <span class="edu-school">Gunadarma University</span>, Depok</div>
+        <span class="item-date">Sep 2022 – Aug 2025</span>
+      </div>
+      <div class="edu-details">GPA: <strong>3.89 / 4.00</strong></div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-header">
+        <div><span class="edu-degree">Vocational High School (TKJ)</span> — <span class="edu-school">SMK Perguruan Cikini</span>, Jakarta</div>
+        <span class="item-date">Aug 2019 – Aug 2022</span>
+      </div>
+      <div class="edu-details">Graduated as <strong>Best Student / Highest Score</strong> in Computer & Network Engineering major</div>
+    </div>
+
+    <div style="margin-top: 6px;">
+      <p style="font-size: 9.2pt; color: #2d3748;">
+        <strong>Certifications:</strong> Computer Network Engineering (BNSP, 2025) • TOEIC English Proficiency (Score: 770/990, 2025) • Computer Engineering Training (P2KPTK2)
+      </p>
+    </div>
+  </div>
+
+</body>
+</html>
