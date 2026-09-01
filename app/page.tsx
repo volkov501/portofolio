@@ -1,3 +1,4 @@
+import { getPortfolioData } from "@/lib/portfolioData";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -8,7 +9,11 @@ import Certifications from "@/components/Certifications";
 import Education from "@/components/Education";
 import Footer from "@/components/Footer";
 
+export const dynamic = "force-dynamic";
+
 export default function Home() {
+  const data = getPortfolioData();
+
   return (
     <main className="min-h-screen bg-background relative overflow-x-hidden selection:bg-primary/30 selection:text-white">
       {/* Global abstract grid background */}
@@ -17,13 +22,13 @@ export default function Home() {
       </div>
       
       <Navbar />
-      <Hero />
-      <About />
-      <Experience />
-      <Projects />
-      <Skills />
-      <Certifications />
-      <Education />
+      <Hero data={data.hero} />
+      <About data={data.about} />
+      <Experience data={data.experience} />
+      <Projects data={data.projects} />
+      <Skills data={data.skills} />
+      <Certifications data={data.certifications} />
+      <Education data={data.education} certs={data.educationCerts} />
       <Footer />
     </main>
   );

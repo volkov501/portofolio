@@ -3,19 +3,15 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Terminal, Database, Download, Server } from "lucide-react";
+import type { HeroData } from "@/lib/defaultData";
 
-export default function Hero() {
+export default function Hero({ data }: { data: HeroData }) {
   const [text, setText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
   const [typingSpeed, setTypingSpeed] = useState(100);
 
-  const roles = [
-    "Network Infrastructure Engineer",
-    "IT Infrastructure Engineer",
-    "HPC / AI Infrastructure Architect",
-    "Autonomous Drone & AIoT Engineer",
-  ];
+  const roles = data.roles;
 
   useEffect(() => {
     let ticker = setInterval(() => {
@@ -47,13 +43,6 @@ export default function Hero() {
     }
   };
 
-  const stats = [
-    { value: "3+", label: "Years Experience" },
-    { value: "500+", label: "Users Supported" },
-    { value: "50+", label: "VMs Managed" },
-    { value: "3.89", label: "GPA" },
-  ];
-
   return (
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
       {/* Background Decorative Elements */}
@@ -72,13 +61,13 @@ export default function Hero() {
           >
             <div className="inline-flex items-center space-x-2 bg-surface border border-primary/20 px-3 py-1.5 rounded-full mb-6">
               <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
-              <span className="text-xs font-mono text-slate-300">AVAILABLE_FOR_HIRE // CONTRACT_ENDED: SEP 4, 2026</span>
+              <span className="text-xs font-mono text-slate-300">{data.availabilityBadge}</span>
             </div>
 
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-4">
-              Arrashi{" "}
+              {data.firstName}{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
-                Satyadi
+                {data.lastName}
               </span>
             </h1>
 
@@ -91,7 +80,7 @@ export default function Hero() {
             </div>
 
             <p className="text-lg text-slate-400 mb-8 max-w-lg leading-relaxed">
-              Building enterprise-grade infrastructure from the ground up — Cisco networks, VMware/Proxmox hypervisors, AI server clusters (NVIDIA H100), and autonomous drone systems. Based in South Jakarta.
+              {data.bio}
             </p>
 
             <div className="flex flex-wrap gap-4 mb-12">
@@ -110,7 +99,7 @@ export default function Hero() {
                 Get In Touch
               </a>
               <a
-                href="/Arrashi_Satyadi_Resume_ATS.pdf"
+                href={data.resumeUrl}
                 download="Arrashi_Satyadi_Resume.pdf"
                 className="px-6 py-3 rounded-md bg-secondary/10 border border-secondary/30 text-secondary font-medium hover:bg-secondary/20 hover:border-secondary/50 transition-all flex items-center hover:scale-105 duration-200"
               >
@@ -121,7 +110,7 @@ export default function Hero() {
 
             {/* Stats */}
             <div className="grid grid-cols-4 gap-4">
-              {stats.map((stat, i) => (
+              {data.stats.map((stat, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, y: 10 }}
@@ -160,18 +149,26 @@ export default function Hero() {
                 </div>
 
                 {/* Floating tech labels */}
-                <div className="absolute top-8 right-8 bg-surface/80 border border-primary/30 px-2 py-1 rounded text-xs font-mono text-primary backdrop-blur-sm">
-                  OSPF/BGP
-                </div>
-                <div className="absolute bottom-8 left-8 bg-surface/80 border border-secondary/30 px-2 py-1 rounded text-xs font-mono text-secondary backdrop-blur-sm">
-                  VMware ESXi
-                </div>
-                <div className="absolute top-1/2 -right-4 bg-surface/80 border border-primary/30 px-2 py-1 rounded text-xs font-mono text-primary backdrop-blur-sm -translate-y-1/2">
-                  H100 GPU
-                </div>
-                <div className="absolute top-1/2 -left-4 bg-surface/80 border border-secondary/30 px-2 py-1 rounded text-xs font-mono text-secondary backdrop-blur-sm -translate-y-1/2">
-                  ArduPilot
-                </div>
+                {data.techLabels[0] && (
+                  <div className="absolute top-8 right-8 bg-surface/80 border border-primary/30 px-2 py-1 rounded text-xs font-mono text-primary backdrop-blur-sm">
+                    {data.techLabels[0]}
+                  </div>
+                )}
+                {data.techLabels[1] && (
+                  <div className="absolute bottom-8 left-8 bg-surface/80 border border-secondary/30 px-2 py-1 rounded text-xs font-mono text-secondary backdrop-blur-sm">
+                    {data.techLabels[1]}
+                  </div>
+                )}
+                {data.techLabels[2] && (
+                  <div className="absolute top-1/2 -right-4 bg-surface/80 border border-primary/30 px-2 py-1 rounded text-xs font-mono text-primary backdrop-blur-sm -translate-y-1/2">
+                    {data.techLabels[2]}
+                  </div>
+                )}
+                {data.techLabels[3] && (
+                  <div className="absolute top-1/2 -left-4 bg-surface/80 border border-secondary/30 px-2 py-1 rounded text-xs font-mono text-secondary backdrop-blur-sm -translate-y-1/2">
+                    {data.techLabels[3]}
+                  </div>
+                )}
               </div>
             </div>
           </motion.div>

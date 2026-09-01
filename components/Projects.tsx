@@ -2,95 +2,29 @@
 
 import { motion } from "framer-motion";
 import { ExternalLink, Camera, Server, Plane, Flame, Cpu, HardDrive, Zap } from "lucide-react";
+import type { Project } from "@/lib/defaultData";
 
-export default function Projects() {
-  const projects = [
-    {
-      title: "AI Server Infrastructure — \"SaveMe!\" Platform",
-      description:
-        "Architected enterprise-grade 4-tier server infrastructure (General, AI, Realtime, Storage) using Dell PowerEdge R760xd/R760xa to support 100,000–2,000,000 concurrent active users. AI Server: 2x Intel Xeon Gold 6760P, 4x NVIDIA H100 PCIe 80GB, 1TB DDR5 ECC RAM. Prepared formal RAB totaling Rp 16,009,267,392 aligned with LKPP/INAPROC procurement standards.",
-      tags: ["Dell PowerEdge R760xa", "NVIDIA H100", "Xeon Gold", "DDR5 ECC", "NVMe RAID10", "iDRAC9", "LKPP"],
-      icon: <HardDrive className="w-6 h-6 text-yellow-400" />,
-      iconBg: "bg-yellow-400/10 border-yellow-400/30",
-      badge: "HPC / AI INFRA",
-      badgeColor: "text-yellow-400 bg-yellow-400/10 border-yellow-400/30",
-      highlight: true,
-      liveUrl: "#", // TODO: ganti dengan link project
-    },
-    {
-      title: "Smart Tactical Body Camera",
-      description:
-        "Developed a thin-client IoT tactical camera using ESP32-CAM + M10Q GPS. Replaced SD card with Client Push Mode via WebSockets to bypass CGNAT, streaming directly to a Node.js backend and processing real-time video with FFmpeg to guarantee evidence chain of custody.",
-      tags: ["ESP32-CAM", "WebSockets", "Node.js", "FFmpeg", "GPS", "CGNAT Bypass"],
-      icon: <Camera className="w-6 h-6 text-primary" />,
-      iconBg: "bg-primary/10 border-primary/30",
-      badge: "THESIS",
-      badgeColor: "text-primary bg-primary/10 border-primary/30",
-      highlight: false,
-      liveUrl: "https://cam.volkovindustry.online", // link ke project kamu
-    },
-    {
-      title: "VmLepkom Infrastructure Modernization",
-      description:
-        "Architected and migrated a heavy multi-user Windows and Ubuntu environment on VMware vSphere into a lightweight, isolated Docker-based architecture using docker-compose, reducing resource overhead while maintaining full functionality for 500+ concurrent users.",
-      tags: ["VMware vSphere", "Docker", "docker-compose", "Ubuntu Server", "Windows Server"],
-      icon: <Server className="w-6 h-6 text-secondary" />,
-      iconBg: "bg-secondary/10 border-secondary/30",
-      badge: "INFRASTRUCTURE",
-      badgeColor: "text-secondary bg-secondary/10 border-secondary/30",
-      highlight: false,
-      liveUrl: "#", // TODO: ganti dengan link project
-    },
-    {
-      title: "Autonomous Drone & VTOL R&D",
-      description:
-        "Built high-performance autonomous drone systems with ArduPilot/MAVLink for real-time crowd monitoring at large-scale events. Spearheaded transition from standard multirotors to VTOL QuadPlane/Tilt-Rotor designs, increasing patrol efficiency by ~40%.",
-      tags: ["ArduPilot", "MAVLink", "VTOL", "RF Protocols", "C2 Network", "UAV"],
-      icon: <Plane className="w-6 h-6 text-primary" />,
-      iconBg: "bg-primary/10 border-primary/30",
-      badge: "AUTONOMOUS",
-      badgeColor: "text-primary bg-primary/10 border-primary/30",
-      highlight: false,
-      liveUrl: "#", // TODO: ganti dengan link project
-    },
-    {
-      title: "IoT Server Environment Monitoring",
-      description:
-        "Designed and deployed a full IoT monitoring system for server room environmental parameters (temperature, humidity, smoke) using ESP32 with cloud integration and Bardi smart device control. Built custom Flutter mobile application for remote monitoring.",
-      tags: ["ESP32", "Flutter", "MQTT", "Bardi IoT", "Sensor Integration"],
-      icon: <Cpu className="w-6 h-6 text-secondary" />,
-      iconBg: "bg-secondary/10 border-secondary/30",
-      badge: "DIPLOMA",
-      badgeColor: "text-secondary bg-secondary/10 border-secondary/30",
-      highlight: false,
-      liveUrl: "#", // TODO: ganti dengan link project
-    },
-    {
-      title: "IoT Wildfire Detection System",
-      description:
-        "Capstone project developing a multi-sensor IoT network for real-time environmental anomaly detection (smoke, heat, humidity), providing automated early warning alerts for rapid response teams.",
-      tags: ["IoT Sensors", "Telemetry", "Environmental Monitoring", "Rapid Response"],
-      icon: <Flame className="w-6 h-6 text-red-400" />,
-      iconBg: "bg-red-400/10 border-red-400/30",
-      badge: "CAPSTONE",
-      badgeColor: "text-red-400 bg-red-400/10 border-red-400/30",
-      highlight: false,
-      liveUrl: "#", // TODO: ganti dengan link project
-    },
-    {
-      title: "Centralized Auth & Storage — CNN Indonesia",
-      description:
-        "Deployed Windows Server ADDC + NAS in VirtualBox for centralized authentication, Group Policy management, file sharing, and automated backups for CNN Indonesia's broadcast IT environment.",
-      tags: ["Windows Server", "ADDC", "NAS", "VirtualBox", "Group Policy"],
-      icon: <Zap className="w-6 h-6 text-purple-400" />,
-      iconBg: "bg-purple-400/10 border-purple-400/30",
-      badge: "BROADCAST IT",
-      badgeColor: "text-purple-400 bg-purple-400/10 border-purple-400/30",
-      highlight: false,
-      liveUrl: "#", // TODO: ganti dengan link project
-    },
-  ];
+const iconMap: Record<string, React.ReactNode> = {
+  yellow: <HardDrive className="w-6 h-6 text-yellow-400" />,
+  primary: <Camera className="w-6 h-6 text-primary" />,
+  secondary: <Server className="w-6 h-6 text-secondary" />,
+  red: <Flame className="w-6 h-6 text-red-400" />,
+  purple: <Zap className="w-6 h-6 text-purple-400" />,
+  plane: <Plane className="w-6 h-6 text-primary" />,
+  cpu: <Cpu className="w-6 h-6 text-secondary" />,
+};
 
+const iconBgMap: Record<string, string> = {
+  yellow: "bg-yellow-400/10 border-yellow-400/30",
+  primary: "bg-primary/10 border-primary/30",
+  secondary: "bg-secondary/10 border-secondary/30",
+  red: "bg-red-400/10 border-red-400/30",
+  purple: "bg-purple-400/10 border-purple-400/30",
+  plane: "bg-primary/10 border-primary/30",
+  cpu: "bg-secondary/10 border-secondary/30",
+};
+
+export default function Projects({ data }: { data: Project[] }) {
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -125,7 +59,7 @@ export default function Projects() {
           viewport={{ once: true, margin: "-100px" }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {projects.map((project, index) => (
+          {data.map((project, index) => (
             <motion.div
               key={index}
               variants={item}
@@ -141,8 +75,8 @@ export default function Projects() {
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
               <div className="flex justify-between items-start mb-4 relative z-10">
-                <div className={`w-12 h-12 rounded-lg flex items-center justify-center border ${project.iconBg} group-hover:scale-110 transition-transform duration-200`}>
-                  {project.icon}
+                <div className={`w-12 h-12 rounded-lg flex items-center justify-center border ${iconBgMap[project.iconColor] ?? iconBgMap.primary} group-hover:scale-110 transition-transform duration-200`}>
+                  {iconMap[project.iconColor] ?? iconMap.primary}
                 </div>
                 <span className={`text-xs font-mono px-2 py-0.5 rounded border ${project.badgeColor}`}>
                   {project.badge}

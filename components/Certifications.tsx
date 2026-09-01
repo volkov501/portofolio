@@ -2,50 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Award, Download, ExternalLink, Calendar, Building2 } from "lucide-react";
-
-interface Cert {
-  title: string;
-  issuer: string;
-  date: string;
-  category: string;
-  downloadUrl?: string;
-  verifyUrl?: string;
-}
-
-const certifications: Cert[] = [
-  {
-    title: "Cisco Certified Network Associate (CCNA)",
-    issuer: "Cisco",
-    date: "Coming Soon",
-    category: "Networking",
-    downloadUrl: "#",
-    verifyUrl: "#",
-  },
-  {
-    title: "VMware Certified Professional — Data Center Virtualization",
-    issuer: "VMware / Broadcom",
-    date: "Coming Soon",
-    category: "Virtualization",
-    downloadUrl: "#",
-    verifyUrl: "#",
-  },
-  {
-    title: "MTCNA — MikroTik Certified Network Associate",
-    issuer: "MikroTik",
-    date: "Coming Soon",
-    category: "Networking",
-    downloadUrl: "#",
-    verifyUrl: "#",
-  },
-  {
-    title: "Google IT Support Professional Certificate",
-    issuer: "Google / Coursera",
-    date: "Coming Soon",
-    category: "IT Support",
-    downloadUrl: "#",
-    verifyUrl: "#",
-  },
-];
+import type { Certification } from "@/lib/defaultData";
 
 const categoryColors: Record<string, string> = {
   Networking: "bg-blue-400/10 border-blue-400/30 text-blue-400",
@@ -53,7 +10,7 @@ const categoryColors: Record<string, string> = {
   "IT Support": "bg-emerald-400/10 border-emerald-400/30 text-emerald-400",
 };
 
-export default function Certifications() {
+export default function Certifications({ data }: { data: Certification[] }) {
   return (
     <section id="certifications" className="py-24 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -77,7 +34,7 @@ export default function Certifications() {
           }}
           className="grid grid-cols-1 md:grid-cols-2 gap-5"
         >
-          {certifications.map((cert, i) => {
+          {data.map((cert, i) => {
             const isPlaceholder = !cert.downloadUrl || cert.downloadUrl === "#";
             return (
               <motion.div

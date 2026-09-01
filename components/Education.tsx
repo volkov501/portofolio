@@ -2,76 +2,37 @@
 
 import { motion } from "framer-motion";
 import { GraduationCap, Award, Star, BookOpen } from "lucide-react";
+import type { EducationEntry, EducationCertification } from "@/lib/defaultData";
 
-export default function Education() {
-  const education = [
-    {
-      school: "Gunadarma University",
-      location: "Depok, Indonesia",
-      degrees: [
-        {
-          level: "S1 — Bachelor of Computer System",
-          period: "Sep 2022 – Sep 2026 (Expected)",
-          gpa: "3.89 / 4.00",
-        },
-        {
-          level: "D3 — Diploma, Computer System",
-          period: "Sep 2022 – Aug 2025",
-          gpa: "3.89 / 4.00",
-        },
-      ],
-      highlight: "Full Scholarship Recipient",
-      icon: <GraduationCap className="w-8 h-8 text-primary" />,
-      iconBg: "bg-primary/10 border-primary/20",
-      color: "primary",
-    },
-    {
-      school: "Perguruan Cikini Vocational High School",
-      location: "DKI Jakarta",
-      degrees: [
-        {
-          level: "High School Diploma — Computer & Network Engineering",
-          period: "Aug 2019 – Aug 2022",
-          gpa: null,
-        },
-      ],
-      highlight: "Graduated as Best Student — Highest Score in Department",
-      icon: <BookOpen className="w-8 h-8 text-secondary" />,
-      iconBg: "bg-secondary/10 border-secondary/20",
-      color: "secondary",
-    },
-  ];
+const eduIconMap: Record<string, React.ReactNode> = {
+  primary: <GraduationCap className="w-8 h-8 text-primary" />,
+  secondary: <BookOpen className="w-8 h-8 text-secondary" />,
+};
 
-  const certifications = [
-    {
-      title: "Computer Network Engineering",
-      issuer: "BNSP — Badan Nasional Sertifikasi Profesi",
-      year: "2025",
-      icon: <Award className="w-7 h-7 text-yellow-400" />,
-      color: "border-yellow-400/30 bg-yellow-400/5",
-      badge: "NATIONAL CERT",
-      badgeColor: "text-yellow-400 border-yellow-400/30 bg-yellow-400/5",
-    },
-    {
-      title: "TOEIC English Proficiency",
-      issuer: "Score: 770 / 990 — Professional Working Level",
-      year: "2025",
-      icon: <Star className="w-7 h-7 text-blue-400" />,
-      color: "border-blue-400/30 bg-blue-400/5",
-      badge: "LANGUAGE",
-      badgeColor: "text-blue-400 border-blue-400/30 bg-blue-400/5",
-    },
-    {
-      title: "Computer Engineering Training",
-      issuer: "P2KPTK2",
-      year: "2023",
-      icon: <BookOpen className="w-7 h-7 text-secondary" />,
-      color: "border-secondary/30 bg-secondary/5",
-      badge: "TRAINING",
-      badgeColor: "text-secondary border-secondary/30 bg-secondary/5",
-    },
-  ];
+const eduIconBg: Record<string, string> = {
+  primary: "bg-primary/10 border-primary/20",
+  secondary: "bg-secondary/10 border-secondary/20",
+};
 
+const certIconMap: Record<string, React.ReactNode> = {
+  yellow: <Award className="w-7 h-7 text-yellow-400" />,
+  blue: <Star className="w-7 h-7 text-blue-400" />,
+  secondary: <BookOpen className="w-7 h-7 text-secondary" />,
+};
+
+const certColorMap: Record<string, { card: string; badge: string }> = {
+  yellow: { card: "border-yellow-400/30 bg-yellow-400/5", badge: "text-yellow-400 border-yellow-400/30 bg-yellow-400/5" },
+  blue: { card: "border-blue-400/30 bg-blue-400/5", badge: "text-blue-400 border-blue-400/30 bg-blue-400/5" },
+  secondary: { card: "border-secondary/30 bg-secondary/5", badge: "text-secondary border-secondary/30 bg-secondary/5" },
+};
+
+export default function Education({
+  data,
+  certs,
+}: {
+  data: EducationEntry[];
+  certs: EducationCertification[];
+}) {
   return (
     <section id="education" className="py-24 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -94,7 +55,7 @@ export default function Education() {
 
           {/* Education */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-            {education.map((edu, i) => (
+            {data.map((edu, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, x: i === 0 ? -20 : 20 }}
@@ -107,7 +68,9 @@ export default function Education() {
                   <GraduationCap className="w-32 h-32 text-primary" />
                 </div>
                 <div className="flex items-center space-x-4 mb-5 relative z-10">
-                  <div className={`p-3 rounded-lg border ${edu.iconBg}`}>{edu.icon}</div>
+                  <div className={`p-3 rounded-lg border ${eduIconBg[edu.color] ?? eduIconBg.primary}`}>
+                    {eduIconMap[edu.color] ?? eduIconMap.primary}
+                  </div>
                   <div>
                     <h3 className="text-xl font-bold text-slate-200">{edu.school}</h3>
                     <p className="text-slate-500 text-sm font-mono">{edu.location}</p>
@@ -141,30 +104,33 @@ export default function Education() {
             <span className="text-primary">//</span> Certifications
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {certifications.map((cert, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className={`bg-surface border rounded-xl p-6 flex flex-col gap-3 hover:-translate-y-1 transition-all duration-300 ${cert.color}`}
-              >
-                <div className="flex justify-between items-start">
-                  <div className="p-2 bg-surface rounded-lg border border-slate-700">
-                    {cert.icon}
+            {certs.map((cert, i) => {
+              const styles = certColorMap[cert.color] ?? certColorMap.secondary;
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className={`bg-surface border rounded-xl p-6 flex flex-col gap-3 hover:-translate-y-1 transition-all duration-300 ${styles.card}`}
+                >
+                  <div className="flex justify-between items-start">
+                    <div className="p-2 bg-surface rounded-lg border border-slate-700">
+                      {certIconMap[cert.color] ?? certIconMap.secondary}
+                    </div>
+                    <span className={`text-xs font-mono px-2 py-0.5 rounded border ${styles.badge}`}>
+                      {cert.badge}
+                    </span>
                   </div>
-                  <span className={`text-xs font-mono px-2 py-0.5 rounded border ${cert.badgeColor}`}>
-                    {cert.badge}
-                  </span>
-                </div>
-                <div>
-                  <h4 className="text-slate-100 font-bold text-base">{cert.title}</h4>
-                  <p className="text-slate-400 text-sm mt-1">{cert.issuer}</p>
-                  <p className="text-slate-500 text-xs font-mono mt-1">Issued: {cert.year}</p>
-                </div>
-              </motion.div>
-            ))}
+                  <div>
+                    <h4 className="text-slate-100 font-bold text-base">{cert.title}</h4>
+                    <p className="text-slate-400 text-sm mt-1">{cert.issuer}</p>
+                    <p className="text-slate-500 text-xs font-mono mt-1">Issued: {cert.year}</p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </motion.div>
       </div>
