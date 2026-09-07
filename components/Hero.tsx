@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Terminal, Database, Download, Server } from "lucide-react";
+import { Terminal, Database, Download } from "lucide-react";
 import type { HeroData } from "@/lib/defaultData";
 
 export default function Hero({ data }: { data: HeroData }) {
@@ -129,49 +129,57 @@ export default function Hero({ data }: { data: HeroData }) {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="hidden lg:block relative"
+            className="hidden lg:flex relative items-center justify-center"
           >
-            {/* Abstract Tech Graphic */}
-            <div className="relative w-full aspect-square max-w-md mx-auto">
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-secondary/20 rounded-full blur-2xl animate-pulse" />
-              <div className="relative w-full h-full border border-primary/30 rounded-full flex items-center justify-center p-8 backdrop-blur-sm bg-surface/30">
-                <div className="absolute top-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent" />
-                <div className="absolute bottom-0 w-full h-[1px] bg-gradient-to-r from-transparent via-secondary to-transparent" />
-                <div className="absolute left-0 h-full w-[1px] bg-gradient-to-b from-transparent via-primary to-transparent" />
-                <div className="absolute right-0 h-full w-[1px] bg-gradient-to-b from-transparent via-secondary to-transparent" />
+            <div className="relative w-full max-w-sm mx-auto">
+              {/* Outer glow rings */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/30 to-secondary/30 blur-3xl animate-pulse scale-110" />
+              <div className="absolute inset-4 rounded-full bg-gradient-to-br from-secondary/20 to-primary/20 blur-2xl animate-pulse" style={{ animationDelay: "0.5s" }} />
 
-                <div className="w-full h-full border border-secondary/30 rounded-full flex items-center justify-center border-dashed animate-[spin_60s_linear_infinite]">
-                  <div className="w-3/4 h-3/4 border border-primary/40 rounded-full flex items-center justify-center animate-[spin_40s_linear_infinite_reverse]">
-                    <div className="w-24 h-24 bg-surface border border-primary/50 rounded-2xl shadow-[0_0_40px_rgba(56,189,248,0.4)] flex items-center justify-center rotate-45 group">
-                      <Server className="w-10 h-10 text-primary -rotate-45" />
-                    </div>
-                  </div>
-                </div>
+              {/* Spinning border ring */}
+              <div className="absolute inset-0 rounded-full border border-primary/20 animate-[spin_30s_linear_infinite]" />
+              <div className="absolute inset-2 rounded-full border border-dashed border-secondary/15 animate-[spin_20s_linear_infinite_reverse]" />
 
-                {/* Floating tech labels */}
-                {data.techLabels[0] && (
-                  <div className="absolute top-8 right-8 bg-surface/80 border border-primary/30 px-2 py-1 rounded text-xs font-mono text-primary backdrop-blur-sm">
-                    {data.techLabels[0]}
-                  </div>
-                )}
-                {data.techLabels[1] && (
-                  <div className="absolute bottom-8 left-8 bg-surface/80 border border-secondary/30 px-2 py-1 rounded text-xs font-mono text-secondary backdrop-blur-sm">
-                    {data.techLabels[1]}
-                  </div>
-                )}
-                {data.techLabels[2] && (
-                  <div className="absolute top-1/2 -right-4 bg-surface/80 border border-primary/30 px-2 py-1 rounded text-xs font-mono text-primary backdrop-blur-sm -translate-y-1/2">
-                    {data.techLabels[2]}
-                  </div>
-                )}
-                {data.techLabels[3] && (
-                  <div className="absolute top-1/2 -left-4 bg-surface/80 border border-secondary/30 px-2 py-1 rounded text-xs font-mono text-secondary backdrop-blur-sm -translate-y-1/2">
-                    {data.techLabels[3]}
-                  </div>
-                )}
+              {/* Photo container */}
+              <div className="relative aspect-square rounded-full overflow-hidden border-2 border-primary/40 shadow-[0_0_60px_rgba(56,189,248,0.25),0_0_120px_rgba(56,189,248,0.1)] mx-8">
+                {/* Gradient overlay bottom */}
+                <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent z-10 pointer-events-none rounded-full" />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/profile.jpg"
+                  alt="Arrashi Satyadi"
+                  className="w-full h-full object-cover object-top scale-105"
+                />
               </div>
+
+              {/* Floating tech labels */}
+              {data.techLabels[0] && (
+                <div className="absolute top-8 -right-2 bg-surface/90 border border-primary/30 px-2 py-1 rounded text-xs font-mono text-primary backdrop-blur-sm shadow-lg">
+                  {data.techLabels[0]}
+                </div>
+              )}
+              {data.techLabels[1] && (
+                <div className="absolute bottom-8 -left-2 bg-surface/90 border border-secondary/30 px-2 py-1 rounded text-xs font-mono text-secondary backdrop-blur-sm shadow-lg">
+                  {data.techLabels[1]}
+                </div>
+              )}
+              {data.techLabels[2] && (
+                <div className="absolute top-1/3 -right-6 bg-surface/90 border border-primary/30 px-2 py-1 rounded text-xs font-mono text-primary backdrop-blur-sm shadow-lg">
+                  {data.techLabels[2]}
+                </div>
+              )}
+              {data.techLabels[3] && (
+                <div className="absolute top-1/3 -left-6 bg-surface/90 border border-secondary/30 px-2 py-1 rounded text-xs font-mono text-secondary backdrop-blur-sm shadow-lg">
+                  {data.techLabels[3]}
+                </div>
+              )}
+
+              {/* Corner dots */}
+              <div className="absolute top-4 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(56,189,248,0.8)] animate-pulse" />
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_rgba(52,211,153,0.8)] animate-pulse" style={{ animationDelay: "0.7s" }} />
             </div>
           </motion.div>
+
         </div>
       </div>
 
