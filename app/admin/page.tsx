@@ -5,6 +5,7 @@ import {
   LayoutDashboard, User, Briefcase, FolderGit2, Code2,
   Award, GraduationCap, ExternalLink, LogOut, Save,
   CheckCircle, AlertCircle, Loader2, Terminal, ChevronRight,
+  GitBranch, CloudUpload,
 } from "lucide-react";
 import AdminAuth from "@/components/admin/AdminAuth";
 import HeroEditor from "@/components/admin/editors/HeroEditor";
@@ -18,6 +19,7 @@ import type { PortfolioData } from "@/lib/defaultData";
 
 type Section = "hero" | "about" | "experience" | "projects" | "skills" | "certifications" | "education";
 type SaveStatus = "idle" | "saving" | "saved" | "error";
+type DeployStatus = "idle" | "deploying" | "deployed" | "error";
 
 const navItems: { id: Section; label: string; icon: React.ReactNode; desc: string }[] = [
   { id: "hero", label: "Hero", icon: <LayoutDashboard className="w-4 h-4" />, desc: "Name, bio, roles, stats" },
@@ -34,6 +36,8 @@ export default function AdminPage() {
   const [data, setData] = useState<PortfolioData | null>(null);
   const [activeSection, setActiveSection] = useState<Section>("hero");
   const [saveStatus, setSaveStatus] = useState<SaveStatus>("idle");
+  const [deployStatus, setDeployStatus] = useState<DeployStatus>("idle");
+  const [deployMessage, setDeployMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
   // Restore token from localStorage
@@ -67,6 +71,39 @@ export default function AdminPage() {
     } catch {
       setSaveStatus("error");
       setTimeout(() => setSaveStatus("idle"), 3000);
+    }
+  }, [data]);
+
+  const handleDeploy = useCallback(async () => {
+    if (!data) return;
+    // Save first, then push
+    setDeployStatus("deploying");
+    setDeployMessage("Saving data...");
+    try {
+      // 1. Save
+      const saveRes = await fetch("/api/portfolio", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const saveJson = await saveRes.json();
+      if (!saveJson.success) throw new Error("Save failed");
+
+      // 2. Push
+      setDeployMessage("Pushing to GitHub...");
+      const deployRes = await fetch("/api/deploy", { method: "POST" });
+      const deployJson = await deployRes.json();
+      if (!deployJson.success) throw new Error(deployJson.error || "Push failed");
+
+      setDeployMessage(deployJson.message || "Pushed! Vercel is deploying...");
+      setDeployStatus("deployed");
+      setSaveStatus("saved");
+      setTimeout(() => { setDeployStatus("idle"); setDeployMessage(""); }, 5000);
+    } catch (err: unknown) {
+      const e = err as Error;
+      setDeployMessage(e.message || "Deploy failed");
+      setDeployStatus("error");
+      setTimeout(() => { setDeployStatus("idle"); setDeployMessage(""); }, 5000);
     }
   }, [data]);
 
@@ -165,22 +202,55 @@ export default function AdminPage() {
 
           <div className="flex items-center gap-3">
             <span className="text-xs text-slate-600 font-mono hidden sm:block">Ctrl+S to save</span>
+
+            {/* Save button */}
             <button
               onClick={handleSave}
-              disabled={saveStatus === "saving" || !data}
+              disabled={saveStatus === "saving" || deployStatus === "deploying" || !data}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all ${
                 saveStatus === "saved"
                   ? "bg-secondary/20 border border-secondary/40 text-secondary"
                   : saveStatus === "error"
                   ? "bg-red-500/20 border border-red-500/40 text-red-400"
-                  : "bg-primary text-background hover:bg-primary/90 disabled:opacity-40"
+                  : "bg-surface border border-slate-700 text-slate-300 hover:border-primary/40 hover:text-primary disabled:opacity-40"
               }`}
             >
               {saveStatus === "saving" && <Loader2 className="w-4 h-4 animate-spin" />}
               {saveStatus === "saved" && <CheckCircle className="w-4 h-4" />}
               {saveStatus === "error" && <AlertCircle className="w-4 h-4" />}
               {saveStatus === "idle" && <Save className="w-4 h-4" />}
-              {saveStatus === "saving" ? "Saving..." : saveStatus === "saved" ? "Saved!" : saveStatus === "error" ? "Error" : "Save Changes"}
+              {saveStatus === "saving" ? "Saving..." : saveStatus === "saved" ? "Saved!" : saveStatus === "error" ? "Error" : "Save"}
+            </button>
+
+            {/* Push & Deploy button */}
+            <button
+              onClick={handleDeploy}
+              disabled={deployStatus === "deploying" || !data}
+              title={deployMessage || "Save + git push → Vercel auto-deploy"}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all ${
+                deployStatus === "deployed"
+                  ? "bg-emerald-500/20 border border-emerald-500/40 text-emerald-400"
+                  : deployStatus === "error"
+                  ? "bg-red-500/20 border border-red-500/40 text-red-400"
+                  : deployStatus === "deploying"
+                  ? "bg-primary/10 border border-primary/30 text-primary"
+                  : "bg-primary text-background hover:bg-primary/90 disabled:opacity-40"
+              }`}
+            >
+              {deployStatus === "deploying" && <Loader2 className="w-4 h-4 animate-spin" />}
+              {deployStatus === "deployed" && <CheckCircle className="w-4 h-4" />}
+              {deployStatus === "error" && <AlertCircle className="w-4 h-4" />}
+              {deployStatus === "idle" && <CloudUpload className="w-4 h-4" />}
+              <span className="hidden sm:inline">
+                {deployStatus === "deploying"
+                  ? deployMessage || "Deploying..."
+                  : deployStatus === "deployed"
+                  ? "Deployed!"
+                  : deployStatus === "error"
+                  ? "Failed"
+                  : "Push & Deploy"}
+              </span>
+              {deployStatus === "idle" && <GitBranch className="w-3 h-3 opacity-60" />}
             </button>
           </div>
         </header>
