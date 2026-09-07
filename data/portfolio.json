@@ -432,7 +432,7 @@
       "degrees": [
         {
           "level": "S1 — Bachelor of Computer System",
-          "period": "Sep 2022 – Sep 2026 (Expected)",
+          "period": "Sep 2022 – Sep 2026",
           "gpa": "3.89 / 4.00"
         },
         {
@@ -462,23 +462,37 @@
     {
       "title": "Computer Network Engineering",
       "issuer": "BNSP — Badan Nasional Sertifikasi Profesi",
-      "year": "2025",
+      "year": "2022",
       "badge": "NATIONAL CERT",
       "color": "yellow"
     },
     {
       "title": "TOEIC English Proficiency",
       "issuer": "Score: 770 / 990 — Professional Working Level",
-      "year": "2025",
+      "year": "2022",
       "badge": "LANGUAGE",
       "color": "blue"
     },
     {
       "title": "Computer Engineering Training",
       "issuer": "P2KPTK2",
-      "year": "2023",
+      "year": "2022",
       "badge": "TRAINING",
       "color": "secondary"
+    },
+    {
+      "title": "Junior Computer Tech.",
+      "issuer": "BNSP — Badan Nasional Sertifikasi Profesi",
+      "year": "2025",
+      "badge": "NATIONAL CERT",
+      "color": "yellow"
+    },
+    {
+      "title": "System & Network Administration",
+      "issuer": "BNSP — Badan Nasional Sertifikasi Profesi",
+      "year": "2026",
+      "badge": "NATIONAL CERT",
+      "color": "yellow"
     }
   ]
 }
