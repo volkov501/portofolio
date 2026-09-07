@@ -86,28 +86,6 @@
   },
   "experience": [
     {
-      "company": "Mitra Teknologi Gemilang (MTG)",
-      "location": "Depok, Indonesia",
-      "role": "Autonomous Drone & AIoT Engineer",
-      "type": "Contract",
-      "period": "Jan 2026 – Sep 2026",
-      "color": "primary",
-      "achievements": [
-        "Engineered autonomous drone systems (ArduPilot/MAVLink) for real-time crowd monitoring and riot detection at large-scale events, achieving reliable HD video and sub-200ms telemetry transmission.",
-        "Developed end-to-end AIoT data pipelines integrating embedded systems (ESP32, M10Q GPS, Flight Controllers) with cloud databases via WebSockets, bridging field hardware with centralized server infrastructure.",
-        "Spearheaded VTOL R&D (QuadPlane/Tilt-Rotor designs), leading transition from standard multirotors to enhance aerodynamic efficiency and extend autonomous patrol duration by ~40%.",
-        "Optimized Command & Control (C2) networks by implementing custom RF protocols to maintain robust, low-latency command links in high-RF-interference environments."
-      ],
-      "tags": [
-        "ArduPilot",
-        "MAVLink",
-        "VTOL",
-        "AIoT",
-        "ESP32",
-        "WebSockets"
-      ]
-    },
-    {
       "company": "LePKom, Gunadarma University",
       "location": "Depok, Indonesia",
       "role": "IT Infrastructure & Network Engineer",
@@ -150,6 +128,28 @@
         "EIGRP",
         "VLAN",
         "Network Security"
+      ]
+    },
+    {
+      "company": "Mitra Teknologi Gemilang (MTG)",
+      "location": "Depok, Indonesia",
+      "role": "Autonomous Drone & AIoT Engineer",
+      "type": "Contract",
+      "period": "Jan 2026 – Sep 2026",
+      "color": "primary",
+      "achievements": [
+        "Engineered autonomous drone systems (ArduPilot/MAVLink) for real-time crowd monitoring and riot detection at large-scale events, achieving reliable HD video and sub-200ms telemetry transmission.",
+        "Developed end-to-end AIoT data pipelines integrating embedded systems (ESP32, M10Q GPS, Flight Controllers) with cloud databases via WebSockets, bridging field hardware with centralized server infrastructure.",
+        "Spearheaded VTOL R&D (QuadPlane/Tilt-Rotor designs), leading transition from standard multirotors to enhance aerodynamic efficiency and extend autonomous patrol duration by ~40%.",
+        "Optimized Command & Control (C2) networks by implementing custom RF protocols to maintain robust, low-latency command links in high-RF-interference environments."
+      ],
+      "tags": [
+        "ArduPilot",
+        "MAVLink",
+        "VTOL",
+        "AIoT",
+        "ESP32",
+        "WebSockets"
       ]
     },
     {
