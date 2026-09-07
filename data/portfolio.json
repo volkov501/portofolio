@@ -38,8 +38,8 @@
   },
   "about": {
     "paragraphs": [
-      "I'm a <primary>Network & IT Infrastructure Engineer</primary> based in South Jakarta with 3+ years of hands-on experience across enterprise server administration, Cisco networking, virtualization, and AIoT systems.",
-      "My work spans from managing <secondary>10+ IBM enterprise servers</secondary> and deploying <secondary>50+ VMs</secondary> on VMware ESXi/Proxmox, to architecting a <primary>Rp 16 Billion AI server infrastructure</primary> with NVIDIA H100 GPUs capable of supporting 2,000,000 concurrent users.",
+      "I'm a <primary>Network & IT Infrastructure Engineer</primary> based in South Jakarta with 3+ years of hands-on experience across enterprise server administration, Cisco networking, virtualization, Container, and AIoT systems.",
+      "My work spans from managing <secondary>10+ IBM enterprise servers</secondary> and deploying <secondary>50+ VMs</secondary> on VMware ESXi/Proxmox, to architecting a <primary>AI server infrastructure</primary> with NVIDIA H100 GPUs capable of supporting 2,000,000 concurrent users.",
       "On the frontier side, I engineer <secondary>autonomous drone systems</secondary> using ArduPilot/MAVLink for real-time crowd monitoring, and build embedded AIoT devices that bridge physical sensors with centralized cloud infrastructure.",
       "I hold a <primary>BNSP National Certification in Computer Network Engineering</primary> (2025), a TOEIC score of <primary>770/990</primary>, and am completing my Bachelor's at Gunadarma University (GPA: 3.89/4.00) on a full scholarship."
     ],
@@ -64,7 +64,7 @@
     "highlights": [
       {
         "title": "RELIABILITY",
-        "desc": "99%+ uptime across 10+ IBM enterprise servers. High-availability infrastructure design.",
+        "desc": "High uptime across 10+ IBM enterprise servers. High-availability infrastructure design.",
         "color": "primary"
       },
       {
@@ -74,7 +74,7 @@
       },
       {
         "title": "SCALE",
-        "desc": "Designed infrastructure supporting 2,000,000 concurrent users. Budget: Rp 16B+.",
+        "desc": "Designed infrastructure supporting 2,000,000 concurrent users.",
         "color": "yellow"
       },
       {
