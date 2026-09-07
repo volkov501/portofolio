@@ -5,7 +5,6 @@ import About from "@/components/About";
 import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
-import Certifications from "@/components/Certifications";
 import Education from "@/components/Education";
 import Footer from "@/components/Footer";
 
@@ -27,7 +26,6 @@ export default function Home() {
       <Experience data={data.experience} />
       <Projects data={data.projects} />
       <Skills data={data.skills} />
-      <Certifications data={data.certifications} />
       <Education data={data.education} certs={data.educationCerts} />
       <Footer />
     </main>
