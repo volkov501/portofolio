@@ -424,40 +424,7 @@
       ]
     }
   ],
-  "certifications": [
-    {
-      "title": "Cisco Certified Network Associate (CCNA)",
-      "issuer": "Cisco",
-      "date": "Coming Soon",
-      "category": "Networking",
-      "downloadUrl": "#",
-      "verifyUrl": "#"
-    },
-    {
-      "title": "VMware Certified Professional — Data Center Virtualization",
-      "issuer": "VMware / Broadcom",
-      "date": "Coming Soon",
-      "category": "Virtualization",
-      "downloadUrl": "#",
-      "verifyUrl": "#"
-    },
-    {
-      "title": "MTCNA — MikroTik Certified Network Associate",
-      "issuer": "MikroTik",
-      "date": "Coming Soon",
-      "category": "Networking",
-      "downloadUrl": "#",
-      "verifyUrl": "#"
-    },
-    {
-      "title": "Google IT Support Professional Certificate",
-      "issuer": "Google / Coursera",
-      "date": "Coming Soon",
-      "category": "IT Support",
-      "downloadUrl": "#",
-      "verifyUrl": "#"
-    }
-  ],
+  "certifications": [],
   "education": [
     {
       "school": "Gunadarma University",
