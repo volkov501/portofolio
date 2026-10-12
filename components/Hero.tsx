@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Terminal, Database, Download } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 import type { HeroData } from "@/lib/defaultData";
 
 export default function Hero({ data }: { data: HeroData }) {
@@ -35,160 +35,122 @@ export default function Hero({ data }: { data: HeroData }) {
 
     if (!isDeleting && updatedText === fullText) {
       setIsDeleting(true);
-      setTypingSpeed(2200);
+      setTypingSpeed(2600);
     } else if (isDeleting && updatedText === "") {
       setIsDeleting(false);
       setLoopNum(loopNum + 1);
-      setTypingSpeed(150);
+      setTypingSpeed(120);
     }
   };
 
   return (
-    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
-      {/* Background Decorative Elements */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl opacity-50 mix-blend-screen animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl opacity-50 mix-blend-screen animate-pulse" style={{ animationDelay: "1s" }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px]" />
-      </div>
+    <section className="relative min-h-screen flex flex-col justify-end overflow-hidden bg-black font-[family-name:var(--font-barlow)]">
+      {/* Full-bleed photographic background */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/hero-bg.jpg"
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover object-center opacity-90"
+      />
+      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black to-transparent pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 relative z-10 w-full pt-40 pb-14 lg:pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 items-end">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            className="lg:col-span-8"
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.9 }}
           >
-            <div className="inline-flex items-center space-x-2 bg-surface border border-primary/20 px-3 py-1.5 rounded-full mb-6">
-              <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
-              <span className="text-xs font-mono text-slate-300">{data.availabilityBadge}</span>
+            <div className="flex items-center gap-3 mb-8">
+              <span className="w-1.5 h-1.5 rounded-full bg-white" />
+              <span className="sx-eyebrow text-white/80">{data.availabilityBadge}</span>
             </div>
 
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-4">
-              {data.firstName}{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
-                {data.lastName}
-              </span>
+            <h1 className="sx-display text-6xl sm:text-7xl lg:text-[104px] xl:text-[120px] text-white leading-[0.92]">
+              {data.firstName}
+              <br />
+              <span className="text-white/45">{data.lastName}</span>
             </h1>
 
-            <div className="h-14 mb-6">
-              <p className="text-lg sm:text-xl font-mono text-slate-300 h-full flex items-center">
-                <span className="text-primary mr-2">&gt;</span>
+            <div className="h-10 mt-8 mb-6 flex items-center">
+              <p className="text-sm sm:text-base uppercase tracking-[0.2em] text-white font-semibold">
                 {text}
-                <span className="typewriter-cursor text-primary"></span>
+                <span className="typewriter-cursor" />
               </p>
             </div>
 
-            <p className="text-lg text-slate-400 mb-8 max-w-lg leading-relaxed">
+            <p className="text-base lg:text-lg text-white/70 mb-10 max-w-xl leading-relaxed tracking-wide">
               {data.bio}
             </p>
 
-            <div className="flex flex-wrap gap-4 mb-12">
-              <a
-                href="#projects"
-                className="px-6 py-3 rounded-md bg-primary text-background font-semibold hover:bg-primary/90 transition-all flex items-center bg-glow hover:scale-105 duration-200"
-              >
-                <Terminal className="w-4 h-4 mr-2" />
+            <div className="flex flex-wrap items-center gap-x-8 gap-y-5">
+              <a href="#projects" className="sx-ghost">
                 View Projects
+                <ArrowRight className="w-4 h-4" />
               </a>
               <a
                 href="#contact"
-                className="px-6 py-3 rounded-md bg-surface border border-slate-700 text-slate-200 font-medium hover:border-primary/50 hover:text-primary transition-all flex items-center hover:scale-105 duration-200"
+                className="text-xs font-bold uppercase tracking-[0.17em] text-white underline underline-offset-8 decoration-white/40 hover:decoration-white transition-colors duration-300"
               >
-                <Database className="w-4 h-4 mr-2" />
                 Get In Touch
               </a>
               <a
                 href={data.resumeUrl}
                 download="Arrashi_Satyadi_Resume.pdf"
-                className="px-6 py-3 rounded-md bg-secondary/10 border border-secondary/30 text-secondary font-medium hover:bg-secondary/20 hover:border-secondary/50 transition-all flex items-center hover:scale-105 duration-200"
+                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.17em] text-white underline underline-offset-8 decoration-white/40 hover:decoration-white transition-colors duration-300"
               >
-                <Download className="w-4 h-4 mr-2" />
+                <Download className="w-3.5 h-3.5" />
                 Resume (PDF)
               </a>
-            </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-4 gap-4">
-              {data.stats.map((stat, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 + i * 0.1, duration: 0.5 }}
-                  className="text-center p-3 bg-surface/50 border border-slate-800 rounded-lg hover:border-primary/30 transition-colors"
-                >
-                  <div className="text-2xl font-bold text-primary font-mono">{stat.value}</div>
-                  <div className="text-xs text-slate-500 mt-1 leading-tight">{stat.label}</div>
-                </motion.div>
-              ))}
             </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="hidden lg:flex relative items-center justify-center"
+            className="lg:col-span-4 hidden lg:block"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.2, delay: 0.3 }}
           >
-            <div className="relative w-full max-w-sm mx-auto">
-              {/* Outer glow rings */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/30 to-secondary/30 blur-3xl animate-pulse scale-110" />
-              <div className="absolute inset-4 rounded-full bg-gradient-to-br from-secondary/20 to-primary/20 blur-2xl animate-pulse" style={{ animationDelay: "0.5s" }} />
-
-              {/* Spinning border ring */}
-              <div className="absolute inset-0 rounded-full border border-primary/20 animate-[spin_30s_linear_infinite]" />
-              <div className="absolute inset-2 rounded-full border border-dashed border-secondary/15 animate-[spin_20s_linear_infinite_reverse]" />
-
-              {/* Photo container */}
-              <div className="relative aspect-square rounded-full overflow-hidden border-2 border-primary/40 shadow-[0_0_60px_rgba(56,189,248,0.25),0_0_120px_rgba(56,189,248,0.1)] mx-8">
-                {/* Gradient overlay bottom */}
-                <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent z-10 pointer-events-none rounded-full" />
+            <div className="relative w-full max-w-[280px] ml-auto">
+              <div className="relative overflow-hidden border border-hairline bg-night-soft">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/profile.jpg"
                   alt="Arrashi Satyadi"
-                  className="w-full h-full object-cover object-top scale-105"
+                  className="w-full aspect-[4/5] object-cover object-top"
                 />
+                <div className="absolute inset-0 ring-1 ring-inset ring-white/10 pointer-events-none" />
               </div>
-
-              {/* Floating tech labels */}
-              {data.techLabels[0] && (
-                <div className="absolute top-8 -right-2 bg-surface/90 border border-primary/30 px-2 py-1 rounded text-xs font-mono text-primary backdrop-blur-sm shadow-lg">
-                  {data.techLabels[0]}
-                </div>
-              )}
-              {data.techLabels[1] && (
-                <div className="absolute bottom-8 -left-2 bg-surface/90 border border-secondary/30 px-2 py-1 rounded text-xs font-mono text-secondary backdrop-blur-sm shadow-lg">
-                  {data.techLabels[1]}
-                </div>
-              )}
-              {data.techLabels[2] && (
-                <div className="absolute top-1/3 -right-6 bg-surface/90 border border-primary/30 px-2 py-1 rounded text-xs font-mono text-primary backdrop-blur-sm shadow-lg">
-                  {data.techLabels[2]}
-                </div>
-              )}
-              {data.techLabels[3] && (
-                <div className="absolute top-1/3 -left-6 bg-surface/90 border border-secondary/30 px-2 py-1 rounded text-xs font-mono text-secondary backdrop-blur-sm shadow-lg">
-                  {data.techLabels[3]}
-                </div>
-              )}
-
-              {/* Corner dots */}
-              <div className="absolute top-4 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(56,189,248,0.8)] animate-pulse" />
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_rgba(52,211,153,0.8)] animate-pulse" style={{ animationDelay: "0.7s" }} />
+              <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 justify-end">
+                {data.techLabels.map((label, i) =>
+                  label ? (
+                    <li key={i} className="sx-eyebrow text-white/70 tracking-[0.16em]">
+                      {label}
+                    </li>
+                  ) : null
+                )}
+              </ul>
             </div>
           </motion.div>
-
         </div>
-      </div>
 
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-        <a href="#about" className="text-slate-500 hover:text-primary transition-colors">
-          <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-          </svg>
-        </a>
+        {/* Stats */}
+        <div className="grid grid-cols-2 md:grid-cols-4 mt-16 lg:mt-20 border-t border-hairline">
+          {data.stats.map((stat, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 + i * 0.1, duration: 0.5 }}
+              className="py-6 pr-6 md:border-r last:border-r-0 border-hairline md:pl-6 first:pl-0"
+            >
+              <div className="sx-display text-4xl lg:text-5xl text-white">{stat.value}</div>
+              <div className="sx-eyebrow mt-3 leading-snug">{stat.label}</div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

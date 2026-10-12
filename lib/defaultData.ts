@@ -55,6 +55,9 @@ export interface Project {
   iconColor: string;
   highlight: boolean;
   liveUrl: string;
+  image?: string;
+  images?: string[];
+  outcome?: string;
 }
 
 export interface SkillCategory {
@@ -109,7 +112,7 @@ export const defaultPortfolioData: PortfolioData = {
   hero: {
     firstName: "Arrashi",
     lastName: "Satyadi",
-    availabilityBadge: "AVAILABLE_FOR_HIRE // CONTRACT_ENDED: SEP 4, 2026",
+    availabilityBadge: "AVAILABLE FOR HIRE",
     bio: "Building enterprise-grade infrastructure from the ground up — Cisco networks, VMware/Proxmox hypervisors, AI server clusters (NVIDIA H100), and autonomous drone systems. Based in South Jakarta.",
     roles: [
       "Network Infrastructure Engineer",
@@ -237,6 +240,8 @@ export const defaultPortfolioData: PortfolioData = {
       iconColor: "yellow",
       highlight: true,
       liveUrl: "#",
+      image: "/projects/ai-server-h100.jpg",
+      outcome: "Rp 16M+ Official LKPP Procurement | 2,000,000 Concurrent User Architecture",
     },
     {
       title: "Smart Tactical Body Camera",
@@ -248,17 +253,35 @@ export const defaultPortfolioData: PortfolioData = {
       iconColor: "primary",
       highlight: false,
       liveUrl: "https://cam.volkovindustry.online",
+      image: "/projects/body-cam.jpg",
+      images: [
+        "/projects/body-cam.jpg",
+        "/projects/body-cam-front.jpg",
+        "/projects/body-cam-dashboard.png",
+        "/projects/body-cam-up.jpg",
+      ],
+      outcome: "Client Push Stream Bypassing CGNAT | Real-time Evidence Integrity",
     },
     {
-      title: "VmLepkom Infrastructure Modernization",
+      title: "Tactical UGV Crawler Robot & Telemetry",
       description:
-        "Architected and migrated a heavy multi-user Windows and Ubuntu environment on VMware vSphere into a lightweight, isolated Docker-based architecture using docker-compose, reducing resource overhead while maintaining full functionality for 500+ concurrent users.",
-      tags: ["VMware vSphere", "Docker", "docker-compose", "Ubuntu Server", "Windows Server"],
-      badge: "INFRASTRUCTURE",
+        "Engineered an autonomous/teleoperated tactical crawler robot with long-range SIYI HD video transmission, real-time IoT telemetry, web dashboard ground station, and custom remote control for tactical reconnaissance.",
+      tags: ["SIYI HD Video", "IoT Telemetry", "Ground Station", "Robotics", "WebSockets", "Python Backend"],
+      badge: "ROBOTICS / TELEMETRY",
       badgeColor: "text-secondary bg-secondary/10 border-secondary/30",
       iconColor: "secondary",
-      highlight: false,
+      highlight: true,
       liveUrl: "#",
+      image: "/projects/crawler-concept.jpg",
+      images: [
+        "/projects/crawler-concept.jpg",
+        "/projects/crawler-ground-station.jpg",
+        "/projects/crawler-remote.jpg",
+        "/projects/crawler-video-siyi.jpg",
+        "/projects/crawler-dashboard.jpg",
+        "/projects/crawler-draft.jpg",
+      ],
+      outcome: "SIYI HD Video Teleoperation | Real-time Web Ground Station Telemetry",
     },
     {
       title: "Autonomous Drone & VTOL R&D",
@@ -270,6 +293,25 @@ export const defaultPortfolioData: PortfolioData = {
       iconColor: "primary",
       highlight: false,
       liveUrl: "#",
+      image: "/projects/eagle-hawk.jpg",
+      images: [
+        "/projects/eagle-hawk.jpg",
+        "/projects/eagle-hawk-web.jpg",
+        "/projects/eagle-hawk-reverse.jpg",
+      ],
+      outcome: "+40% Patrol Efficiency Gain | MAVLink/ArduPilot Real-Time C2 Telemetry",
+    },
+    {
+      title: "VmLepkom Infrastructure Modernization",
+      description:
+        "Architected and migrated a heavy multi-user Windows and Ubuntu environment on VMware vSphere into a lightweight, isolated Docker-based architecture using docker-compose, reducing resource overhead while maintaining full functionality for 500+ concurrent users.",
+      tags: ["VMware vSphere", "Docker", "docker-compose", "Ubuntu Server", "Windows Server"],
+      badge: "INFRASTRUCTURE",
+      badgeColor: "text-secondary bg-secondary/10 border-secondary/30",
+      iconColor: "secondary",
+      highlight: false,
+      liveUrl: "#",
+      outcome: "500+ Concurrent Students Supported | 60% Server Overhead Reduction",
     },
     {
       title: "IoT Server Environment Monitoring",
@@ -281,6 +323,7 @@ export const defaultPortfolioData: PortfolioData = {
       iconColor: "secondary",
       highlight: false,
       liveUrl: "#",
+      outcome: "24/7 Server Room Early Warning System | Custom Flutter Client",
     },
     {
       title: "IoT Wildfire Detection System",
@@ -292,6 +335,7 @@ export const defaultPortfolioData: PortfolioData = {
       iconColor: "red",
       highlight: false,
       liveUrl: "#",
+      outcome: "Multi-Sensor Early Telemetry Alert | Rapid Anomaly Response Network",
     },
     {
       title: "Centralized Auth & Storage — CNN Indonesia",
@@ -303,6 +347,7 @@ export const defaultPortfolioData: PortfolioData = {
       iconColor: "purple",
       highlight: false,
       liveUrl: "#",
+      outcome: "Zero Broadcast Downtime | Centralized Group Policy & NAS Redundancy",
     },
   ],
 

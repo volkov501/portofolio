@@ -2,7 +2,7 @@
   "hero": {
     "firstName": "Arrashi",
     "lastName": "Satyadi",
-    "availabilityBadge": "AVAILABLE_FOR_HIRE // CONTRACT_ENDED: SEP 4, 2026",
+    "availabilityBadge": "AVAILABLE FOR HIRE",
     "bio": "Building enterprise-grade infrastructure from the ground up — Cisco networks, VMware/Proxmox hypervisors, AI server clusters (NVIDIA H100), and autonomous drone systems. Based in South Jakarta.",
     "roles": [
       "Network Infrastructure Engineer",
@@ -213,7 +213,9 @@
       "badgeColor": "text-yellow-400 bg-yellow-400/10 border-yellow-400/30",
       "iconColor": "yellow",
       "highlight": true,
-      "liveUrl": "#"
+      "liveUrl": "#",
+      "image": "/projects/ai-server-h100.jpg",
+      "outcome": "Rp 16M+ Official LKPP Procurement | 2,000,000 Concurrent User Architecture"
     },
     {
       "title": "Smart Tactical Body Camera",
@@ -230,23 +232,42 @@
       "badgeColor": "text-primary bg-primary/10 border-primary/30",
       "iconColor": "primary",
       "highlight": false,
-      "liveUrl": "https://cam.volkovindustry.online"
+      "liveUrl": "https://cam.volkovindustry.online",
+      "image": "/projects/body-cam.jpg",
+      "images": [
+        "/projects/body-cam.jpg",
+        "/projects/body-cam-front.jpg",
+        "/projects/body-cam-dashboard.png",
+        "/projects/body-cam-up.jpg"
+      ],
+      "outcome": "Client Push Stream Bypassing CGNAT | Real-time Evidence Integrity"
     },
     {
-      "title": "VmLepkom Infrastructure Modernization",
-      "description": "Architected and migrated a heavy multi-user Windows and Ubuntu environment on VMware vSphere into a lightweight, isolated Docker-based architecture using docker-compose, reducing resource overhead while maintaining full functionality for 500+ concurrent users.",
+      "title": "Tactical UGV Crawler Robot & Telemetry",
+      "description": "Engineered an autonomous/teleoperated tactical crawler robot with long-range SIYI HD video transmission, real-time IoT telemetry, web dashboard ground station, and custom remote control for tactical reconnaissance.",
       "tags": [
-        "VMware vSphere",
-        "Docker",
-        "docker-compose",
-        "Ubuntu Server",
-        "Windows Server"
+        "SIYI HD Video",
+        "IoT Telemetry",
+        "Ground Station",
+        "Robotics",
+        "WebSockets",
+        "Python Backend"
       ],
-      "badge": "INFRASTRUCTURE",
+      "badge": "ROBOTICS / TELEMETRY",
       "badgeColor": "text-secondary bg-secondary/10 border-secondary/30",
       "iconColor": "secondary",
-      "highlight": false,
-      "liveUrl": "#"
+      "highlight": true,
+      "liveUrl": "#",
+      "image": "/projects/crawler-concept.jpg",
+      "images": [
+        "/projects/crawler-concept.jpg",
+        "/projects/crawler-ground-station.jpg",
+        "/projects/crawler-remote.jpg",
+        "/projects/crawler-video-siyi.jpg",
+        "/projects/crawler-dashboard.jpg",
+        "/projects/crawler-draft.jpg"
+      ],
+      "outcome": "SIYI HD Video Teleoperation | Real-time Web Ground Station Telemetry"
     },
     {
       "title": "Autonomous Drone & VTOL R&D",
@@ -263,7 +284,31 @@
       "badgeColor": "text-primary bg-primary/10 border-primary/30",
       "iconColor": "primary",
       "highlight": false,
-      "liveUrl": "#"
+      "liveUrl": "#",
+      "image": "/projects/eagle-hawk.jpg",
+      "images": [
+        "/projects/eagle-hawk.jpg",
+        "/projects/eagle-hawk-web.jpg",
+        "/projects/eagle-hawk-reverse.jpg"
+      ],
+      "outcome": "+40% Patrol Efficiency Gain | MAVLink/ArduPilot Real-Time C2 Telemetry"
+    },
+    {
+      "title": "VmLepkom Infrastructure Modernization",
+      "description": "Architected and migrated a heavy multi-user Windows and Ubuntu environment on VMware vSphere into a lightweight, isolated Docker-based architecture using docker-compose, reducing resource overhead while maintaining full functionality for 500+ concurrent users.",
+      "tags": [
+        "VMware vSphere",
+        "Docker",
+        "docker-compose",
+        "Ubuntu Server",
+        "Windows Server"
+      ],
+      "badge": "INFRASTRUCTURE",
+      "badgeColor": "text-secondary bg-secondary/10 border-secondary/30",
+      "iconColor": "secondary",
+      "highlight": false,
+      "liveUrl": "#",
+      "outcome": "500+ Concurrent Students Supported | 60% Server Overhead Reduction"
     },
     {
       "title": "IoT Server Environment Monitoring",
@@ -279,7 +324,8 @@
       "badgeColor": "text-secondary bg-secondary/10 border-secondary/30",
       "iconColor": "secondary",
       "highlight": false,
-      "liveUrl": "#"
+      "liveUrl": "#",
+      "outcome": "24/7 Server Room Early Warning System | Custom Flutter Client"
     },
     {
       "title": "IoT Wildfire Detection System",
@@ -294,7 +340,8 @@
       "badgeColor": "text-red-400 bg-red-400/10 border-red-400/30",
       "iconColor": "red",
       "highlight": false,
-      "liveUrl": "#"
+      "liveUrl": "#",
+      "outcome": "Multi-Sensor Early Telemetry Alert | Rapid Anomaly Response Network"
     },
     {
       "title": "Centralized Auth & Storage — CNN Indonesia",
@@ -310,7 +357,8 @@
       "badgeColor": "text-purple-400 bg-purple-400/10 border-purple-400/30",
       "iconColor": "purple",
       "highlight": false,
-      "liveUrl": "#"
+      "liveUrl": "#",
+      "outcome": "Zero Broadcast Downtime | Centralized Group Policy & NAS Redundancy"
     }
   ],
   "skills": [

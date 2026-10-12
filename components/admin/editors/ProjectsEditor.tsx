@@ -128,6 +128,30 @@ export default function ProjectsEditor({ data, onChange }: Props) {
                 <input className={inputCls} value={project.tags.join(", ")} onChange={e => setTagsString(i, e.target.value)} placeholder="React, Node.js, Docker" />
               </div>
 
+              <div>
+                <label className="text-xs font-mono text-slate-500 mb-1 block">Measurable Impact / Outcome</label>
+                <input className={inputCls} value={project.outcome || ""} onChange={e => updateProject(i, "outcome", e.target.value)} placeholder="e.g. 500+ Concurrent Users | 40% Efficiency Gain" />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div>
+                  <label className="text-xs font-mono text-slate-500 mb-1 block">Cover Image URL (e.g. /projects/body-cam.jpg)</label>
+                  <input className={inputCls} value={project.image || ""} onChange={e => updateProject(i, "image", e.target.value)} placeholder="/projects/my-photo.jpg" />
+                </div>
+                <div>
+                  <label className="text-xs font-mono text-slate-500 mb-1 block">Additional Photos (comma-separated URLs)</label>
+                  <input 
+                    className={inputCls} 
+                    value={(project.images || []).join(", ")} 
+                    onChange={e => updateProject(i, "images", e.target.value.split(",").map(s => s.trim()).filter(Boolean))} 
+                    placeholder="/projects/photo1.jpg, /projects/photo2.jpg" 
+                  />
+                </div>
+              </div>
+              <p className="text-[11px] font-mono text-slate-500">
+                Tip: Taruh foto baru di folder <span className="text-primary font-semibold">public/projects/</span> lalu tulis jalurnya di sini (misal: /projects/nama-foto.jpg).
+              </p>
+
               <div className="flex items-center gap-3">
                 <label className="relative inline-flex items-center cursor-pointer">
                   <input

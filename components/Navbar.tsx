@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, Cpu, Network } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -26,39 +26,32 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-surface/80 backdrop-blur-md border-b border-primary/20 py-3 shadow-lg"
-          : "bg-transparent py-5"
+      className={`fixed top-0 w-full z-50 transition-colors duration-300 font-[family-name:var(--font-barlow)] ${
+        isScrolled || mobileMenuOpen
+          ? "bg-black border-b border-hairline py-4"
+          : "bg-transparent py-6"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
         <div className="flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <div className="flex -space-x-1">
-              <Network className="w-6 h-6 text-primary" />
-              <Cpu className="w-6 h-6 text-secondary" />
-            </div>
-            <span className="font-mono font-bold text-xl tracking-tighter ml-1">
-              ARRASHI<span className="text-primary">.SYS</span>
-            </span>
-          </div>
+          <a href="#" className="sx-display text-xl sm:text-2xl text-white tracking-[0.18em]">
+            Arrashi
+          </a>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex items-center gap-9">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium text-slate-300 hover:text-primary transition-colors hover:text-glow font-mono"
+                className="text-xs font-semibold uppercase tracking-[0.17em] text-white/80 hover:text-white transition-colors duration-300"
               >
-                <span className="text-primary/70 mr-1">/</span>
                 {link.name}
               </a>
             ))}
             <a
               href="#contact"
-              className="text-sm font-medium px-4 py-2 rounded-md bg-primary/10 border border-primary/30 text-primary hover:bg-primary/20 hover:border-primary/50 transition-all bg-glow-hover"
+              className="text-xs font-bold uppercase tracking-[0.17em] px-6 py-3 rounded-full border border-white text-white hover:bg-[#f0f0fa] hover:text-black transition-colors duration-300"
             >
               Hire Me
             </a>
@@ -68,7 +61,8 @@ export default function Navbar() {
           <div className="md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-slate-300 hover:text-white"
+              aria-label="Toggle menu"
+              className="text-white"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -78,23 +72,22 @@ export default function Navbar() {
 
       {/* Mobile Nav */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-surface/95 backdrop-blur-md border-b border-primary/20">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <div className="md:hidden bg-black border-t border-hairline">
+          <div className="px-6 py-6 space-y-1">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-primary hover:bg-surface-hover font-mono"
+                className="block py-3 text-sm font-semibold uppercase tracking-[0.17em] text-white/80 hover:text-white border-b border-hairline/60"
               >
-                <span className="text-primary/70 mr-2">/</span>
                 {link.name}
               </a>
             ))}
             <a
               href="#contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="block mt-4 px-3 py-2 rounded-md text-base font-medium text-primary bg-primary/10 border border-primary/30"
+              className="sx-ghost mt-6 w-full justify-center"
             >
               Hire Me
             </a>

@@ -14,11 +14,7 @@ export default function Home() {
   const data = getPortfolioData();
 
   return (
-    <main className="min-h-screen bg-background relative overflow-x-hidden selection:bg-primary/30 selection:text-white">
-      {/* Global abstract grid background */}
-      <div className="fixed inset-0 z-0 opacity-[0.03] pointer-events-none" 
-           style={{ backgroundImage: 'linear-gradient(to right, #38bdf8 1px, transparent 1px), linear-gradient(to bottom, #38bdf8 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
-      </div>
+    <main className="min-h-screen bg-black relative overflow-x-hidden selection:bg-white selection:text-black">
       
       <Navbar />
       <Hero data={data.hero} />

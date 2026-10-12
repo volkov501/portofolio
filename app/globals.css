@@ -9,6 +9,17 @@
   
   --font-sans: var(--font-inter);
   --font-mono: var(--font-fira-code);
+
+  --color-night: #000000;
+  --color-night-soft: #0a0a0a;
+  --color-hairline: #3a3a3f;
+  --color-mute: #a1a1a8;
+  --font-display: var(--font-barlow-condensed), "Arial Narrow", Arial, sans-serif;
+  --font-body: var(--font-barlow), Arial, Verdana, sans-serif;
+}
+
+:root {
+  --sx-hairline: #3a3a3f;
 }
 
 @layer base {
@@ -34,6 +45,41 @@
   .bg-glow-hover:hover {
     box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
   }
+}
+
+.sx-display {
+  font-family: var(--font-barlow-condensed), "Arial Narrow", Arial, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+.sx-eyebrow {
+  font-family: var(--font-barlow), Arial, Verdana, sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #a1a1a8;
+}
+.sx-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 28px;
+  border: 1px solid #fff;
+  border-radius: 32px;
+  font-family: var(--font-barlow), Arial, Verdana, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: #fff;
+  background: transparent;
+  transition: background-color 0.33s, color 0.33s, border-color 0.33s;
+}
+.sx-ghost:hover {
+  background: #f0f0fa;
+  color: #000;
 }
 
 .typewriter-cursor {
