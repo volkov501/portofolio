@@ -49,6 +49,14 @@ export default function Navbar() {
                 {link.name}
               </a>
             ))}
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new CustomEvent("open-resume"))}
+              className="text-xs font-semibold uppercase tracking-[0.17em] text-white/80 hover:text-white transition-colors duration-300 cursor-pointer"
+              title="Preview ATS Resume"
+            >
+              Resume
+            </button>
             <a
               href="#contact"
               className="text-xs font-bold uppercase tracking-[0.17em] px-6 py-3 rounded-full border border-white text-white hover:bg-[#f0f0fa] hover:text-black transition-colors duration-300"
@@ -84,6 +92,16 @@ export default function Navbar() {
                 {link.name}
               </a>
             ))}
+            <button
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                window.dispatchEvent(new CustomEvent("open-resume"));
+              }}
+              className="w-full text-left py-3 text-sm font-semibold uppercase tracking-[0.17em] text-white/80 hover:text-white border-b border-hairline/60 cursor-pointer"
+            >
+              Resume (PDF Preview)
+            </button>
             <a
               href="#contact"
               onClick={() => setMobileMenuOpen(false)}

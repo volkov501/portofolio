@@ -25,10 +25,13 @@ Folder ini (`public/projects/`) adalah tempat penyimpanan seluruh foto project p
 
 ## Daftar Foto yang Tersedia Saat Ini:
 - `body-cam.jpg` (Foto Tactical Body Camera)
+- `body-cam-dashboard-v2.jpg` (Satellite Command Center Map & Live GPS Tracking UNIT-01)
+- `body-cam-real.jpg` (Foto Fisik Hardware Bodycam & M10Q Ceramic GPS Antenna Patch)
 - `body-cam-front.jpg` (Body Camera tampak depan)
 - `body-cam-up.jpg` (Body Camera tampak atas)
 - `body-cam-dashboard.png` (Screenshot Web Dashboard Bodycam)
 - `crawler-concept.jpg` (Foto Concept Crawler Robot)
+- `crawler-frontend-cam.jpg` (X-FIRE Mission Control Dashboard dengan Dual-Camera Live Stream)
 - `crawler-ground-station.jpg` (Foto Ground Station Crawler)
 - `crawler-remote.jpg` (Foto Remote Controller Crawler)
 - `crawler-video-siyi.jpg` (Foto SIYI Video Transmitter System)
@@ -38,3 +41,8 @@ Folder ini (`public/projects/`) adalah tempat penyimpanan seluruh foto project p
 - `eagle-hawk-web.jpg` (Screenshot Custom Web GCS Eagle Hawk)
 - `eagle-hawk-reverse.jpg` (Foto Reverse Engineering Eagle Hawk)
 - `ai-server-h100.jpg` (Foto AI Server Supercomputer Rack)
+- `server-monitor-testing.jpg` (Pengujian Fisik IoT di Datacenter Server Rack LePKom)
+- `server-monitor-workflow.jpg` (Diagram Alur Kerja & Arsitektur Monitoring Server)
+- `server-monitor-flutter.jpg` (UI Aplikasi Mobile Flutter Monitoring Server F8)
+- `server-monitor-smoke.jpg` (Notifikasi Peringatan Dini Deteksi Asap, Suhu & Air)
+

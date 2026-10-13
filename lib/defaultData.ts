@@ -256,6 +256,8 @@ export const defaultPortfolioData: PortfolioData = {
       image: "/projects/body-cam.jpg",
       images: [
         "/projects/body-cam.jpg",
+        "/projects/body-cam-dashboard-v2.jpg",
+        "/projects/body-cam-real.jpg",
         "/projects/body-cam-front.jpg",
         "/projects/body-cam-dashboard.png",
         "/projects/body-cam-up.jpg",
@@ -275,6 +277,7 @@ export const defaultPortfolioData: PortfolioData = {
       image: "/projects/crawler-concept.jpg",
       images: [
         "/projects/crawler-concept.jpg",
+        "/projects/crawler-frontend-cam.jpg",
         "/projects/crawler-ground-station.jpg",
         "/projects/crawler-remote.jpg",
         "/projects/crawler-video-siyi.jpg",
@@ -323,6 +326,13 @@ export const defaultPortfolioData: PortfolioData = {
       iconColor: "secondary",
       highlight: false,
       liveUrl: "#",
+      image: "/projects/server-monitor-testing.jpg",
+      images: [
+        "/projects/server-monitor-testing.jpg",
+        "/projects/server-monitor-workflow.jpg",
+        "/projects/server-monitor-flutter.jpg",
+        "/projects/server-monitor-smoke.jpg",
+      ],
       outcome: "24/7 Server Room Early Warning System | Custom Flutter Client",
     },
     {

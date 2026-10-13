@@ -39,6 +39,17 @@ Semua tugas di bawah ini telah selesai diimplementasikan, lolos build/typecheck 
 - [x] **SEO, OpenGraph & Social Sharing:**
   - Ditambahkan `metadataBase`, OpenGraph preview, Twitter card, dan robots metadata di `app/layout.tsx`.
   - Disediakan aset cover sosial `public/og.jpg` (1200x630).
+- [x] **Pembaruan Koleksi Aset Gambar & Galeri (7 Foto Baru Terkoneksi):**
+  - **Smart Tactical Body Camera (Total 6 Foto):** Ditambahkan foto satelit live GPS tracking UNIT-01 Command Center (`body-cam-dashboard-v2.jpg`) dan foto fisik hardware bodycam di tangan dengan modul GPS M10Q (`body-cam-real.jpg`).
+  - **Tactical UGV Crawler Robot (Total 7 Foto):** Ditambahkan screenshot Mission Control X-FIRE dengan dual-camera live stream split view (`crawler-frontend-cam.jpg`).
+  - **IoT Server Environment Monitoring (Kini Lengkap dengan 4 Foto Visual):** Menghubungkan cover pengujian di rack server nyata LePKom (`server-monitor-testing.jpg`), diagram arsitektur workflow sistem (`server-monitor-workflow.jpg`), UI mobile app Flutter (`server-monitor-flutter.jpg`), dan trigger notifikasi peringatan dini asap/suhu/air (`server-monitor-smoke.jpg`).
+- [x] **Interactive Resume PDF Viewer Modal (Quick Preview & Download):**
+  - Disediakan modal `components/ResumeModal.tsx` bergaya SpaceX/Tesla (*pure black, hairline border `#3a3a3f`, backdrop blur 95%*).
+  - Tombol *"Resume (Preview)"* pada Hero dan link *"Resume"* pada top Navbar membuka viewer PDF ATS langsung di layar tanpa memaksa download ke drive lokal.
+  - Lengkap dengan aksi *"Download PDF"*, *"Open in New Tab"*, tombol close (`ESC` / `X`), dan body scroll lock.
+- [x] **Vercel Web Analytics & Speed Insights:**
+  - Terpasang paket resmi `@vercel/analytics` dan `@vercel/speed-insights`.
+  - Diaktifkan di `app/layout.tsx` untuk pemantauan trafik real-time, statistik negara pengunjung, dan performa Core Web Vitals dari dashboard Vercel.
 
 ---
 
@@ -112,9 +123,8 @@ Berikut adalah daftar rekomendasi upgrade tingkat lanjut yang bisa dikerjakan di
 * **Konsep:** Saat ini Anda memiliki file video rekaman uji coba robot (`Test Crawler.mp4`) dan footage penerbangan drone.
 * **Fitur:** Modal galeri dapat mendukung pemutaran video MP4 singkat / WebM secara seamless di samping foto-foto diam.
 
-### [ ] Saran 3: Interactive Resume PDF Viewer Modal
-* **Konsep:** Saat ini tombol "Resume (PDF)" langsung mendownload file `Arrashi_Satyadi_Resume_ATS.pdf`.
-* **Fitur:** Tambahkan opsi tombol *"Quick Preview"* yang membuka modal pop-up PDF viewer langsung di dalam browser tanpa harus mendownload file ke drive lokal terlebih dahulu.
+### [x] Saran 3: Interactive Resume PDF Viewer Modal (SELESAI)
+* **Status:** Selesai diimplementasikan dengan komponen `ResumeModal.tsx`. Tombol *"Resume (Preview)"* pada Hero dan link *"Resume"* di Navbar membuka viewer PDF langsung di layar secara interaktif.
 
 ### [ ] Saran 4: Diagram Arsitektur & Topologi Interaktif
 * **Konsep:** Rekruter infrastruktur jaringan dan HPC sangat menyukai diagram topologi sistem (Cisco topology, 4-tier Dell PowerEdge cluster, dan alur WebSockets ESP32 CGNAT bypass).
@@ -124,9 +134,8 @@ Berikut adalah daftar rekomendasi upgrade tingkat lanjut yang bisa dikerjakan di
 * **Konsep:** Selain email dan nomor telepon, sediakan form pesan ringkas di footer: *"Send Encrypted Message / Fast Inquire"*.
 * **Fitur:** Form ini otomatis meneruskan pesan langsung ke Bot Telegram / Webhook Discord / email Arrashi melalui Next.js API Route (`app/api/contact/route.ts`).
 
-### [ ] Saran 6: Vercel Web Analytics & Speed Insights
-* **Konsep:** Pasang paket resmi `@vercel/analytics` dan `@vercel/speed-insights`.
-* **Manfaat:** Anda bisa melihat jumlah pengunjung portofolio secara real-time dari dashboard Vercel (negara asal pengunjung, halaman yang paling lama dilihat, dan skor kecepatan loading).
+### [x] Saran 6: Vercel Web Analytics & Speed Insights (SELESAI)
+* **Status:** Selesai dipasang menggunakan `@vercel/analytics` dan `@vercel/speed-insights` pada `app/layout.tsx`. Aktif melacak statistik pengunjung dan performa Core Web Vitals otomatis saat dideploy ke Vercel.
 
 ### [ ] Saran 7: Sertifikasi & Verifikasi Kredensial Interaktif
 * **Konsep:** Di section Education/Certifications, sediakan tombol *"Verify Credential"* yang menampilkan preview sertifikat BNSP / TOEIC / CCNA dalam popup modal.

@@ -2,14 +2,22 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, Download, FileText } from "lucide-react";
 import type { HeroData } from "@/lib/defaultData";
+import ResumeModal from "./ResumeModal";
 
 export default function Hero({ data }: { data: HeroData }) {
   const [text, setText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
   const [typingSpeed, setTypingSpeed] = useState(100);
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
+
+  useEffect(() => {
+    const handleOpenResume = () => setIsResumeOpen(true);
+    window.addEventListener("open-resume", handleOpenResume);
+    return () => window.removeEventListener("open-resume", handleOpenResume);
+  }, []);
 
   const roles = data.roles;
 
@@ -96,13 +104,23 @@ export default function Hero({ data }: { data: HeroData }) {
               >
                 Get In Touch
               </a>
+              <button
+                type="button"
+                onClick={() => setIsResumeOpen(true)}
+                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.17em] text-white underline underline-offset-8 decoration-white/40 hover:decoration-white transition-colors duration-300 cursor-pointer"
+                title="Preview ATS Resume in interactive modal"
+              >
+                <FileText className="w-3.5 h-3.5" />
+                Resume (Preview)
+              </button>
               <a
                 href={data.resumeUrl}
                 download="Arrashi_Satyadi_Resume.pdf"
-                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.17em] text-white underline underline-offset-8 decoration-white/40 hover:decoration-white transition-colors duration-300"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.17em] text-white/50 hover:text-white transition-colors duration-300"
+                title="Download PDF directly"
               >
-                <Download className="w-3.5 h-3.5" />
-                Resume (PDF)
+                <Download className="w-3 h-3" />
+                Download
               </a>
             </div>
           </motion.div>
@@ -152,6 +170,12 @@ export default function Hero({ data }: { data: HeroData }) {
           ))}
         </div>
       </div>
+
+      <ResumeModal
+        isOpen={isResumeOpen}
+        onClose={() => setIsResumeOpen(false)}
+        resumeUrl={data.resumeUrl}
+      />
     </section>
   );
 }
