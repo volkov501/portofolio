@@ -57,6 +57,7 @@ export interface Project {
   liveUrl: string;
   image?: string;
   images?: string[];
+  videos?: string[]; // YouTube / Google Drive links or video files (see lib/video.ts)
   outcome?: string;
   caseStudyUrl?: string;
 }
@@ -289,6 +290,7 @@ export const defaultPortfolioData: PortfolioData = {
         "/projects/crawler-dashboard.jpg",
         "/projects/crawler-draft.jpg",
       ],
+      videos: ["/projects/videos/ugv-crawler-field-test.mp4"],
       outcome: "SIYI HD Video Teleoperation | Real-time Web Ground Station Telemetry",
     },
     {

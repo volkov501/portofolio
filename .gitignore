@@ -24,6 +24,8 @@
 .DS_Store
 *.pem
 *.mp4
+# short project clips shown by the video player (keep each file small, see public/projects/videos/README.md)
+!public/projects/videos/*.mp4
 
 # debug
 npm-debug.log*

@@ -1,11 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, ArrowUpRight, Images, X, ChevronLeft, ChevronRight, Zap, Camera } from "lucide-react";
+import { ExternalLink, ArrowUpRight, Images, X, ChevronLeft, ChevronRight, Zap, Camera, Play } from "lucide-react";
 import type { Project } from "@/lib/defaultData";
+import { parseVideo } from "@/lib/video";
 import SectionHeading from "./SectionHeading";
+import VideoModal from "./VideoModal";
 
 interface GalleryState {
   isOpen: boolean;
@@ -14,11 +16,38 @@ interface GalleryState {
   currentIndex: number;
 }
 
+interface VideoState {
+  isOpen: boolean;
+  projectTitle: string;
+  videos: string[];
+  currentIndex: number;
+}
+
+// SpaceX-style round play button, centred over the project cover
+function PlayButton({ label, onClick }: { label: string; onClick: (e: React.MouseEvent) => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={label}
+      className="absolute inset-0 m-auto w-16 h-16 rounded-full border border-white bg-black/40 backdrop-blur-sm text-white flex items-center justify-center transition-[transform,background-color,color] duration-500 hover:scale-110 hover:bg-white hover:text-black"
+    >
+      <Play className="w-6 h-6 ml-0.5 fill-current" />
+    </button>
+  );
+}
+
 export default function Projects({ data }: { data: Project[] }) {
   const [gallery, setGallery] = useState<GalleryState>({
     isOpen: false,
     projectTitle: "",
     images: [],
+    currentIndex: 0,
+  });
+  const [video, setVideo] = useState<VideoState>({
+    isOpen: false,
+    projectTitle: "",
+    videos: [],
     currentIndex: 0,
   });
 
@@ -63,6 +92,9 @@ export default function Projects({ data }: { data: Project[] }) {
     });
   };
 
+  // Stable so the modal's ESC/scroll-lock effect doesn't re-run on every render
+  const closeVideo = useCallback(() => setVideo((prev) => ({ ...prev, isOpen: false })), []);
+
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -91,6 +123,18 @@ export default function Projects({ data }: { data: Project[] }) {
           {data.map((project, index) => {
             const hasImages = Boolean(project.image || (project.images && project.images.length > 0));
             const imageCount = project.images?.length || (project.image ? 1 : 0);
+            const videos = (project.videos ?? []).filter((v) => v.trim());
+            const firstVideo = videos.length ? parseVideo(videos[0]) : null;
+            const openVideo = () =>
+              setVideo({ isOpen: true, projectTitle: project.title, videos, currentIndex: 0 });
+            const onPlay = (e: React.MouseEvent) => {
+              e.stopPropagation();
+              openVideo();
+            };
+            // Without a photo, the video supplies the cover: YouTube thumbnail or the file's first frame
+            const coverImage =
+              project.image || (firstVideo?.kind === "youtube" ? firstVideo.thumbnail : undefined);
+            const coverFrame = !coverImage && firstVideo?.kind === "file" ? firstVideo.src : undefined;
 
             return (
               <motion.div
@@ -110,19 +154,30 @@ export default function Projects({ data }: { data: Project[] }) {
 
                 {/* Project Image Banner / Gallery Slot */}
                 <div className="relative mb-6 overflow-hidden border border-hairline/70 group-hover:border-black/20 bg-night-soft transition-colors duration-300">
-                  {project.image ? (
-                    <div 
-                      onClick={() => openGallery(project, 0)}
+                  {coverImage || coverFrame ? (
+                    <div
+                      onClick={() => (hasImages ? openGallery(project, 0) : openVideo())}
                       className="relative aspect-video cursor-pointer overflow-hidden"
-                      title="Click to expand gallery"
+                      title={hasImages ? "Click to expand gallery" : "Play video"}
                     >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        loading="lazy"
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
+                      {coverImage ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={coverImage}
+                          alt={project.title}
+                          loading="lazy"
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      ) : (
+                        <video
+                          src={`${coverFrame}#t=0.1`}
+                          muted
+                          playsInline
+                          preload="metadata"
+                          aria-hidden="true"
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      )}
                       <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300 pointer-events-none" />
 
                       {/* Black curtain lifts off the photo as the card scrolls in */}
@@ -142,6 +197,16 @@ export default function Projects({ data }: { data: Project[] }) {
                           <span>{imageCount} Photos</span>
                         </div>
                       )}
+
+                      {videos.length > 0 && <PlayButton label={`Play ${project.title} video`} onClick={onPlay} />}
+                    </div>
+                  ) : videos.length > 0 ? (
+                    /* Video without a usable cover (e.g. Google Drive): play slot */
+                    <div className="relative aspect-video bg-white/[0.02] group-hover:bg-black/[0.02]">
+                      <PlayButton label={`Play ${project.title} video`} onClick={onPlay} />
+                      <span className="absolute bottom-4 inset-x-0 text-center sx-eyebrow text-[10px] text-white/40 group-hover:text-black/40 tracking-[0.18em]">
+                        Mission Footage
+                      </span>
                     </div>
                   ) : (
                     /* Subtle aesthetic slot for projects awaiting photos */
@@ -222,15 +287,29 @@ export default function Projects({ data }: { data: Project[] }) {
                     </span>
                   )}
 
-                  {hasImages && (
-                    <button
-                      type="button"
-                      onClick={() => openGallery(project, 0)}
-                      className="py-3 -my-3 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-white/80 group-hover:text-black transition-colors hover:underline"
-                    >
-                      <Images className="w-3.5 h-3.5" />
-                      Gallery ({imageCount})
-                    </button>
+                  {(videos.length > 0 || hasImages) && (
+                    <div className="flex items-center gap-5">
+                      {videos.length > 0 && (
+                        <button
+                          type="button"
+                          onClick={openVideo}
+                          className="py-3 -my-3 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-white/80 group-hover:text-black transition-colors hover:underline"
+                        >
+                          <Play className="w-3.5 h-3.5 fill-current" />
+                          Video{videos.length > 1 ? ` (${videos.length})` : ""}
+                        </button>
+                      )}
+                      {hasImages && (
+                        <button
+                          type="button"
+                          onClick={() => openGallery(project, 0)}
+                          className="py-3 -my-3 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-white/80 group-hover:text-black transition-colors hover:underline"
+                        >
+                          <Images className="w-3.5 h-3.5" />
+                          Gallery ({imageCount})
+                        </button>
+                      )}
+                    </div>
                   )}
                 </div>
               </motion.div>
@@ -338,6 +417,15 @@ export default function Projects({ data }: { data: Project[] }) {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <VideoModal
+        isOpen={video.isOpen}
+        title={video.projectTitle}
+        videos={video.videos}
+        index={video.currentIndex}
+        onIndexChange={(currentIndex) => setVideo((prev) => ({ ...prev, currentIndex }))}
+        onClose={closeVideo}
+      />
     </section>
   );
 }

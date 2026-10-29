@@ -275,7 +275,10 @@
         "/projects/crawler-dashboard.jpg",
         "/projects/crawler-draft.jpg"
       ],
-      "outcome": "SIYI HD Video Teleoperation | Real-time Web Ground Station Telemetry"
+      "outcome": "SIYI HD Video Teleoperation | Real-time Web Ground Station Telemetry",
+      "videos": [
+        "/projects/videos/ugv-crawler-field-test.mp4"
+      ]
     },
     {
       "title": "Autonomous Drone & VTOL R&D",

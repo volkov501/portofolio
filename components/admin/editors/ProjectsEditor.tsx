@@ -157,6 +157,16 @@ export default function ProjectsEditor({ data, onChange }: Props) {
                 Tip: Taruh foto baru di folder <span className="text-primary font-semibold">public/projects/</span> lalu tulis jalurnya di sini (misal: /projects/nama-foto.jpg).
               </p>
 
+              <div>
+                <label className="text-xs font-mono text-slate-500 mb-1 block">Videos (comma-separated: YouTube, Google Drive, or /projects/videos/file.mp4)</label>
+                <input
+                  className={inputCls}
+                  value={(project.videos || []).join(", ")}
+                  onChange={e => updateProject(i, "videos", e.target.value.split(",").map(s => s.trim()).filter(Boolean))}
+                  placeholder="https://youtu.be/xxxxxxxxxxx, /projects/videos/demo.mp4"
+                />
+              </div>
+
               <div className="flex items-center gap-3">
                 <label className="relative inline-flex items-center cursor-pointer">
                   <input
