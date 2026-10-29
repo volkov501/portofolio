@@ -34,7 +34,7 @@ export default function Navbar() {
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-10 sx-reveal-sub" style={{ animationDelay: "0s" }}>
         <div className="flex justify-between items-center">
-          <a href="#" className="sx-display text-xl sm:text-2xl text-white tracking-[0.18em]">
+          <a href="#" className="py-2 -my-2 sx-display text-xl sm:text-2xl text-white tracking-[0.18em]">
             Arrashi
           </a>
 
@@ -70,7 +70,8 @@ export default function Navbar() {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
-              className="text-white"
+              aria-expanded={mobileMenuOpen}
+              className="p-2 -m-2 text-white"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -80,7 +81,7 @@ export default function Navbar() {
 
       {/* Mobile Nav */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-black border-t border-hairline">
+        <div className="lg:hidden bg-black border-t border-hairline min-h-[100dvh]">
           <div className="px-6 py-6 space-y-1">
             {navLinks.map((link, i) => (
               <a

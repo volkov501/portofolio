@@ -68,7 +68,7 @@ export default function About({ data }: { data: AboutData }) {
                   </div>
                   <div className="flex justify-between gap-4 border-b border-hairline pb-3">
                     <span className="text-mute">Class</span>
-                    <span className="text-white font-semibold text-right">NETWORK_INFRA_ENGINEER</span>
+                    <span className="text-white font-semibold text-right min-w-0 [overflow-wrap:anywhere]">NETWORK_INFRA_ENGINEER</span>
                   </div>
                   <div className="flex justify-between gap-4">
                     <span className="text-mute">Status</span>

@@ -200,7 +200,7 @@ export default function Projects({ data }: { data: Project[] }) {
                   {project.caseStudyUrl ? (
                     <Link
                       href={project.caseStudyUrl}
-                      className="sx-arrow-link inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.17em] text-white group-hover:text-black transition-colors duration-300 hover:underline"
+                      className="py-3 -my-3 sx-arrow-link inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.17em] text-white group-hover:text-black transition-colors duration-300 hover:underline"
                     >
                       Read Case Study
                       <ArrowUpRight className="w-4 h-4 sx-arrow" />
@@ -210,7 +210,7 @@ export default function Projects({ data }: { data: Project[] }) {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="sx-arrow-link inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.17em] text-white group-hover:text-black transition-colors duration-300 hover:underline"
+                      className="py-3 -my-3 sx-arrow-link inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.17em] text-white group-hover:text-black transition-colors duration-300 hover:underline"
                     >
                       View Live Project
                       <ArrowUpRight className="w-4 h-4 sx-arrow" />
@@ -226,7 +226,7 @@ export default function Projects({ data }: { data: Project[] }) {
                     <button
                       type="button"
                       onClick={() => openGallery(project, 0)}
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-white/80 group-hover:text-black transition-colors hover:underline"
+                      className="py-3 -my-3 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-white/80 group-hover:text-black transition-colors hover:underline"
                     >
                       <Images className="w-3.5 h-3.5" />
                       Gallery ({imageCount})

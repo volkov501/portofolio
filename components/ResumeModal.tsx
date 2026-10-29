@@ -8,12 +8,22 @@ interface ResumeModalProps {
   isOpen: boolean;
   onClose: () => void;
   resumeUrl?: string;
+  htmlUrl?: string;
+}
+
+// Android Chrome can't render a PDF inside an iframe and iOS Safari only shows its first page,
+// so touch devices and browsers without a PDF viewer get the HTML version of the same resume.
+function canShowPdfInline(): boolean {
+  if (typeof window === "undefined") return true;
+  const touchOrSmall = window.matchMedia("(pointer: coarse), (max-width: 767px)").matches;
+  return navigator.pdfViewerEnabled !== false && !touchOrSmall;
 }
 
 export default function ResumeModal({
   isOpen,
   onClose,
   resumeUrl = "/Arrashi_Satyadi_Resume_ATS.pdf",
+  htmlUrl = "/Arrashi_Satyadi_Resume.html",
 }: ResumeModalProps) {
   // ESC key handler & body scroll lock
   useEffect(() => {
@@ -108,8 +118,8 @@ export default function ResumeModal({
             {/* Document Viewer Frame */}
             <div className="relative flex-1 w-full bg-night overflow-hidden">
               <iframe
-                src={`${resumeUrl}#toolbar=1&navpanes=0`}
-                className="w-full h-full border-none"
+                src={canShowPdfInline() ? `${resumeUrl}#toolbar=1&navpanes=0` : htmlUrl}
+                className="w-full h-full border-none bg-white"
                 title="Arrashi Satyadi ATS Resume"
               />
             </div>

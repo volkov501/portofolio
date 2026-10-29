@@ -65,15 +65,15 @@ export default function Footer() {
             <ul className="border-t border-hairline">
               <li className="flex items-center py-5 border-b border-hairline text-white/80 hover:text-white transition-colors duration-300">
                 <Mail className="w-5 h-5 mr-5 text-white" strokeWidth={1.25} />
-                <a href="mailto:folkov11@gmail.com" className="tracking-wide">folkov11@gmail.com</a>
+                <a href="mailto:folkov11@gmail.com" className="py-3 -my-3 tracking-wide">folkov11@gmail.com</a>
               </li>
               <li className="flex items-center py-5 border-b border-hairline text-white/80 hover:text-white transition-colors duration-300">
                 <Phone className="w-5 h-5 mr-5 text-white" strokeWidth={1.25} />
-                <a href="tel:+6287735499904" className="tracking-wide">087735499904</a>
+                <a href="tel:+6287735499904" className="py-3 -my-3 tracking-wide">087735499904</a>
               </li>
               <li className="flex items-center py-5 border-b border-hairline text-white/80 hover:text-white transition-colors duration-300">
                 <MessageCircle className="w-5 h-5 mr-5 text-white" strokeWidth={1.25} />
-                <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="tracking-wide">
+                <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="py-3 -my-3 tracking-wide">
                   Chat on WhatsApp
                 </a>
               </li>

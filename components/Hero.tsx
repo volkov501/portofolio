@@ -57,7 +57,14 @@ export default function Hero({ data }: { data: HeroData }) {
           {/* Staged entrance, same rhythm as spacex.com: headline, then subheader, then CTA */}
           <div className="lg:col-span-8">
             <div className="flex items-center gap-3 mb-8 sx-reveal-sub" style={{ animationDelay: "0.05s" }}>
-              <span className="w-1.5 h-1.5 rounded-full bg-white" />
+              {/* The large portrait is desktop-only, so phones get a compact avatar here */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/profile.jpg"
+                alt="Arrashi Satyadi"
+                className="lg:hidden w-16 h-16 rounded-full object-cover object-top border border-hairline"
+              />
+              <span className="hidden lg:block w-1.5 h-1.5 rounded-full bg-white" />
               <span className="sx-eyebrow text-white/80">{data.availabilityBadge}</span>
             </div>
 
@@ -95,14 +102,14 @@ export default function Hero({ data }: { data: HeroData }) {
               </a>
               <a
                 href="#contact"
-                className="text-xs font-bold uppercase tracking-[0.17em] text-white underline underline-offset-8 decoration-white/40 hover:decoration-white transition-colors duration-300"
+                className="py-3 -my-3 text-xs font-bold uppercase tracking-[0.17em] text-white underline underline-offset-8 decoration-white/40 hover:decoration-white transition-colors duration-300"
               >
                 Get In Touch
               </a>
               <button
                 type="button"
                 onClick={() => setIsResumeOpen(true)}
-                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.17em] text-white underline underline-offset-8 decoration-white/40 hover:decoration-white transition-colors duration-300 cursor-pointer"
+                className="py-3 -my-3 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.17em] text-white underline underline-offset-8 decoration-white/40 hover:decoration-white transition-colors duration-300 cursor-pointer"
                 title="Preview ATS Resume in interactive modal"
               >
                 <FileText className="w-3.5 h-3.5" />
@@ -111,7 +118,7 @@ export default function Hero({ data }: { data: HeroData }) {
               <a
                 href={data.resumeUrl}
                 download="Arrashi_Satyadi_Resume.pdf"
-                className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.17em] text-white/50 hover:text-white transition-colors duration-300"
+                className="py-3 -my-3 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.17em] text-white/50 hover:text-white transition-colors duration-300"
                 title="Download PDF directly"
               >
                 <Download className="w-3 h-3" />
