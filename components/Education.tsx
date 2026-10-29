@@ -1,9 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Award } from "lucide-react";
+import { Award, ArrowUpRight, FileCheck } from "lucide-react";
 import type { EducationEntry, EducationCertification } from "@/lib/defaultData";
 import SectionHeading from "./SectionHeading";
+import RevealText from "./motion/RevealText";
 
 export default function Education({
   data,
@@ -35,7 +36,9 @@ export default function Education({
                 className="p-8 lg:p-10 border-r border-b border-hairline flex flex-col"
               >
                 <p className="sx-eyebrow mb-4">{edu.location}</p>
-                <h3 className="sx-display text-3xl lg:text-4xl text-white mb-8">{edu.school}</h3>
+                <h3 className="sx-display text-3xl lg:text-4xl text-white mb-8">
+                  <RevealText>{edu.school}</RevealText>
+                </h3>
 
                 <div className="space-y-5 mb-8">
                   {edu.degrees.map((deg, j) => (
@@ -59,7 +62,7 @@ export default function Education({
           </div>
 
           {/* Certifications */}
-          <p className="sx-eyebrow text-white mb-6">Certifications</p>
+          <p id="certifications" className="sx-eyebrow text-white mb-6 scroll-mt-28">Certifications</p>
           <div className="grid grid-cols-1 md:grid-cols-3 border-t border-l border-hairline">
             {certs.map((cert, i) => (
               <motion.div
@@ -80,6 +83,29 @@ export default function Education({
                   <h4 className="sx-display text-xl text-white leading-tight">{cert.title}</h4>
                   <p className="text-white/60 text-sm mt-3">{cert.issuer}</p>
                   <p className="text-mute text-xs uppercase tracking-[0.14em] mt-2">Issued: {cert.year}</p>
+                </div>
+
+                {/* Credential proof: link once a scan is uploaded, otherwise a quiet placeholder */}
+                <div className="mt-auto pt-5 border-t border-hairline flex flex-wrap items-center justify-between gap-3">
+                  {cert.credentialUrl ? (
+                    <a
+                      href={cert.credentialUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="sx-arrow-link inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.17em] text-white hover:underline"
+                    >
+                      View Certificate
+                      <ArrowUpRight className="w-4 h-4 sx-arrow" />
+                    </a>
+                  ) : (
+                    <span className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.16em] text-white/30">
+                      <FileCheck className="w-3.5 h-3.5" strokeWidth={1.5} />
+                      Credential on request
+                    </span>
+                  )}
+                  {cert.credentialId && (
+                    <span className="text-[11px] uppercase tracking-[0.12em] text-mute">No. {cert.credentialId}</span>
+                  )}
                 </div>
               </motion.div>
             ))}

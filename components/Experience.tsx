@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Briefcase, Calendar, ChevronRight, MapPin } from "lucide-react";
 import type { ExperienceEntry } from "@/lib/defaultData";
 import SectionHeading from "./SectionHeading";
+import RevealText from "./motion/RevealText";
 
 export default function Experience({ data }: { data: ExperienceEntry[] }) {
   return (
@@ -46,7 +47,9 @@ export default function Experience({ data }: { data: ExperienceEntry[] }) {
                 </div>
 
                 <div className="lg:col-span-8">
-                  <h3 className="sx-display text-3xl md:text-4xl text-white mb-6">{exp.role}</h3>
+                  <h3 className="sx-display text-3xl md:text-4xl text-white mb-6">
+                    <RevealText>{exp.role}</RevealText>
+                  </h3>
 
                   <ul className="space-y-3 mb-8">
                     {exp.achievements.map((item, i) => (

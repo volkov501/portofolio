@@ -26,20 +26,20 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 transition-colors duration-300 font-[family-name:var(--font-barlow)] ${
+      className={`fixed top-0 w-full z-50 transition-[background-color,padding] duration-500 font-[family-name:var(--font-barlow)] ${
         isScrolled || mobileMenuOpen
           ? "bg-black border-b border-hairline py-4"
-          : "bg-transparent py-6"
+          : "bg-gradient-to-b from-black/60 to-transparent py-6"
       }`}
     >
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 sx-reveal-sub" style={{ animationDelay: "0s" }}>
         <div className="flex justify-between items-center">
           <a href="#" className="sx-display text-xl sm:text-2xl text-white tracking-[0.18em]">
             Arrashi
           </a>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-9">
+          <nav className="hidden lg:flex items-center gap-9">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -66,7 +66,7 @@ export default function Navbar() {
           </nav>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
@@ -80,14 +80,15 @@ export default function Navbar() {
 
       {/* Mobile Nav */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-black border-t border-hairline">
+        <div className="lg:hidden bg-black border-t border-hairline">
           <div className="px-6 py-6 space-y-1">
-            {navLinks.map((link) => (
+            {navLinks.map((link, i) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="block py-3 text-sm font-semibold uppercase tracking-[0.17em] text-white/80 hover:text-white border-b border-hairline/60"
+                className="block py-3 text-sm font-semibold uppercase tracking-[0.17em] text-white/80 hover:text-white border-b border-hairline/60 sx-reveal-sub"
+                style={{ animationDelay: `${i * 0.05}s` }}
               >
                 {link.name}
               </a>
@@ -98,14 +99,16 @@ export default function Navbar() {
                 setMobileMenuOpen(false);
                 window.dispatchEvent(new CustomEvent("open-resume"));
               }}
-              className="w-full text-left py-3 text-sm font-semibold uppercase tracking-[0.17em] text-white/80 hover:text-white border-b border-hairline/60 cursor-pointer"
+              className="w-full text-left py-3 text-sm font-semibold uppercase tracking-[0.17em] text-white/80 hover:text-white border-b border-hairline/60 cursor-pointer sx-reveal-sub"
+              style={{ animationDelay: `${navLinks.length * 0.05}s` }}
             >
               Resume (PDF Preview)
             </button>
             <a
               href="#contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="sx-ghost mt-6 w-full justify-center"
+              className="sx-ghost mt-6 w-full justify-center sx-reveal-btn"
+              style={{ animationDelay: "0.4s" }}
             >
               Hire Me
             </a>

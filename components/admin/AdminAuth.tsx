@@ -24,7 +24,7 @@ export default function AdminAuth({ onAuth }: { onAuth: (token: string) => void 
         localStorage.setItem("admin_token", json.token);
         onAuth(json.token);
       } else {
-        setError("Wrong password. Try again.");
+        setError(res.status === 503 ? json.error : "Wrong password. Try again.");
       }
     } catch {
       setError("Network error. Is the server running?");

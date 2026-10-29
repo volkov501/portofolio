@@ -3,7 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import {
   LayoutDashboard, User, Briefcase, FolderGit2, Code2,
-  Award, GraduationCap, ExternalLink, LogOut, Save,
+  GraduationCap, ExternalLink, LogOut, Save,
   CheckCircle, AlertCircle, Loader2, Terminal, ChevronRight,
   GitBranch, CloudUpload,
 } from "lucide-react";
@@ -13,11 +13,10 @@ import AboutEditor from "@/components/admin/editors/AboutEditor";
 import ExperienceEditor from "@/components/admin/editors/ExperienceEditor";
 import ProjectsEditor from "@/components/admin/editors/ProjectsEditor";
 import SkillsEditor from "@/components/admin/editors/SkillsEditor";
-import CertificationsEditor from "@/components/admin/editors/CertificationsEditor";
 import EducationEditor from "@/components/admin/editors/EducationEditor";
 import type { PortfolioData } from "@/lib/defaultData";
 
-type Section = "hero" | "about" | "experience" | "projects" | "skills" | "certifications" | "education";
+type Section = "hero" | "about" | "experience" | "projects" | "skills" | "education";
 type SaveStatus = "idle" | "saving" | "saved" | "error";
 type DeployStatus = "idle" | "deploying" | "deployed" | "error";
 
@@ -27,8 +26,8 @@ const navItems: { id: Section; label: string; icon: React.ReactNode; desc: strin
   { id: "experience", label: "Experience", icon: <Briefcase className="w-4 h-4" />, desc: "Work history" },
   { id: "projects", label: "Projects", icon: <FolderGit2 className="w-4 h-4" />, desc: "Project cards" },
   { id: "skills", label: "Skills", icon: <Code2 className="w-4 h-4" />, desc: "Skill categories" },
-  { id: "certifications", label: "Certifications", icon: <Award className="w-4 h-4" />, desc: "Certs & credentials" },
-  { id: "education", label: "Education", icon: <GraduationCap className="w-4 h-4" />, desc: "Schools & degrees" },
+  // Certificates shown on the site live in the Education section (educationCerts)
+  { id: "education", label: "Education & Certs", icon: <GraduationCap className="w-4 h-4" />, desc: "Degrees, certs & proof files" },
 ];
 
 export default function AdminPage() {
@@ -62,9 +61,16 @@ export default function AdminPage() {
     try {
       const res = await fetch("/api/portfolio", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify(data),
       });
+      if (res.status === 401) {
+        // Token expired or invalid: send the user back to the login screen
+        localStorage.removeItem("admin_token");
+        setToken(null);
+        setSaveStatus("idle");
+        return;
+      }
       const json = await res.json();
       setSaveStatus(json.success ? "saved" : "error");
       setTimeout(() => setSaveStatus("idle"), 3000);
@@ -72,7 +78,7 @@ export default function AdminPage() {
       setSaveStatus("error");
       setTimeout(() => setSaveStatus("idle"), 3000);
     }
-  }, [data]);
+  }, [data, token]);
 
   const handleDeploy = useCallback(async () => {
     if (!data) return;
@@ -83,15 +89,19 @@ export default function AdminPage() {
       // 1. Save
       const saveRes = await fetch("/api/portfolio", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify(data),
       });
+      if (saveRes.status === 401) throw new Error("Session expired — please log in again.");
       const saveJson = await saveRes.json();
       if (!saveJson.success) throw new Error("Save failed");
 
       // 2. Push
       setDeployMessage("Pushing to GitHub...");
-      const deployRes = await fetch("/api/deploy", { method: "POST" });
+      const deployRes = await fetch("/api/deploy", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+      });
       const deployJson = await deployRes.json();
       if (!deployJson.success) throw new Error(deployJson.error || "Push failed");
 
@@ -105,7 +115,7 @@ export default function AdminPage() {
       setDeployStatus("error");
       setTimeout(() => { setDeployStatus("idle"); setDeployMessage(""); }, 5000);
     }
-  }, [data]);
+  }, [data, token]);
 
   // Keyboard shortcut: Ctrl+S
   useEffect(() => {
@@ -280,9 +290,6 @@ export default function AdminPage() {
               )}
               {activeSection === "skills" && (
                 <SkillsEditor data={data.skills} onChange={skills => setData({ ...data, skills })} />
-              )}
-              {activeSection === "certifications" && (
-                <CertificationsEditor data={data.certifications} onChange={certifications => setData({ ...data, certifications })} />
               )}
               {activeSection === "education" && (
                 <EducationEditor

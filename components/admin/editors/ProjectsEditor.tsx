@@ -124,6 +124,11 @@ export default function ProjectsEditor({ data, onChange }: Props) {
               </div>
 
               <div>
+                <label className="text-xs font-mono text-slate-500 mb-1 block">Case Study URL (optional, replaces the live link)</label>
+                <input className={inputCls} value={project.caseStudyUrl || ""} onChange={e => updateProject(i, "caseStudyUrl", e.target.value)} placeholder="/case-study/my-project" />
+              </div>
+
+              <div>
                 <label className="text-xs font-mono text-slate-500 mb-1 block">Tags (comma-separated)</label>
                 <input className={inputCls} value={project.tags.join(", ")} onChange={e => setTagsString(i, e.target.value)} placeholder="React, Node.js, Docker" />
               </div>

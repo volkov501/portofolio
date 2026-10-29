@@ -33,6 +33,11 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
+
+# confidential procurement documents (RAB / server specs) — keep out of the public repo
+*.docx
+*.xlsx
 
 # vercel
 .vercel

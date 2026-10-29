@@ -1,5 +1,6 @@
 // app/api/portfolio/route.ts
 import { getPortfolioData, savePortfolioData } from "@/lib/portfolioData";
+import { isAuthorized } from "@/lib/adminAuth";
 import type { PortfolioData } from "@/lib/defaultData";
 
 export const dynamic = "force-dynamic";
@@ -10,6 +11,9 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+  if (!isAuthorized(request)) {
+    return Response.json({ success: false, error: "Unauthorized" }, { status: 401 });
+  }
   try {
     const body: PortfolioData = await request.json();
     savePortfolioData(body);

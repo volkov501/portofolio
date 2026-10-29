@@ -6,7 +6,7 @@
 
 ## Professional Summary
 
-Results-driven **Network & IT Infrastructure Engineer** with **3+ years** of hands-on experience in enterprise server administration, virtualization (VMware ESXi, Proxmox VE), Cisco networking, and AIoT/Autonomous Drone systems. Proven track record managing **10+ IBM enterprise servers**, supporting **500+ users**, and maintaining **99%+ system uptime**. Designed enterprise-grade **AI server infrastructure** (Dell PowerEdge R760xa, 4x NVIDIA H100 GPU) supporting up to **2,000,000 concurrent users** (total budget: Rp 16B+). Adept at bridging hardware and cloud infrastructure for scalable, high-reliability environments. Actively targeting **Network Engineer**, **IT Infrastructure Engineer**, and **HPC/AI Infrastructure Engineer** roles.
+Results-driven **Network & IT Infrastructure Engineer** with **3+ years** of hands-on experience in enterprise server administration, virtualization (VMware ESXi, Proxmox VE), Cisco networking, and AIoT/Autonomous Drone systems. Proven track record managing **10+ IBM enterprise servers**, supporting **500+ users**, and maintaining **99%+ system uptime**. Designed an on-premise **AI server infrastructure** (4 dedicated servers, NVIDIA H200 NVL GPU node) sized for **100,000-150,000 active users**, from capacity planning and RAB through vendor RFQ. Adept at bridging hardware and cloud infrastructure for scalable, high-reliability environments. Actively targeting **Network Engineer**, **IT Infrastructure Engineer**, and **HPC/AI Infrastructure Engineer** roles.
 
 ---
 
@@ -19,7 +19,7 @@ Cisco IOS, OSPF, BGP, EIGRP, VLAN, STP, EtherChannel, TCP/IP, DNS, DHCP, NAT, SS
 VMware ESXi (vSphere), Proxmox VE, Hypervisor Management, VM Provisioning, Windows Server, Active Directory Domain Controller (ADDC), NAS Storage, RAID Configuration, NVMe, iDRAC9, IBM System Servers, Dell PowerEdge, Apache Guacamole (Remote Desktop)
 
 **Data Center & HPC Infrastructure:**
-Dell PowerEdge R760xd/R760xa, Data Center Operations, High Availability (HA), Server Rack Management, NVIDIA H100 GPU Infrastructure, AI Server Architecture, Budget Planning (RAB/LKPP/INAPROC), Enterprise Storage Architecture
+Dell PowerEdge R760xa, Data Center Operations, High Availability (HA), Server Rack Management, Rack & Power Design (A/B PDU), NVIDIA H200/H100 GPU Servers, AI Server Architecture, Capacity Planning, Budget Planning (RAB), BOM/RFQ & Vendor Evaluation, Enterprise Storage Architecture
 
 **IoT & Embedded Systems:**
 ESP32, ArduPilot, MAVLink, PX4, Flight Controller Integration, GPS Module (M10Q), MQTT, IoT Sensor Networks, WebSockets, CGNAT Bypass, Firmware Integration, Flutter (Mobile IoT Control)
@@ -37,9 +37,10 @@ Indonesian (Native) | English -- TOEIC Score: 770/990 (Professional Working Prof
 
 ## Professional Experience
 
-### Autonomous Drone & AIoT Engineer -- Contract
-**Mitra Teknologi Gemilang (MTG)** | Depok, Indonesia | Jan 2026 -- Sep 2026
+### IoT Engineer & Server Manager -- Contract
+**Mitra Teknologi Gemilang (MTG)** | Depok, Indonesia | Jan 2026 -- Present
 
+- Lead SaveMe! server infrastructure: 4-server stack with an NVIDIA H200 NVL AI node, rack network, RAB and vendor RFQ (see Key Projects)
 - Engineered autonomous drone systems (ArduPilot/MAVLink) for real-time crowd monitoring and riot detection at large-scale events, achieving reliable HD video and sub-200ms telemetry transmission
 - Developed end-to-end AIoT data pipelines integrating embedded systems (ESP32, M10Q GPS, Flight Controllers) with cloud databases via WebSockets, bridging field hardware with centralized server infrastructure
 - Spearheaded VTOL R&D (QuadPlane/Tilt-Rotor designs), leading the transition from standard multirotors to enhance aerodynamic efficiency and extend autonomous patrol duration by ~40%
@@ -86,10 +87,11 @@ Indonesian (Native) | English -- TOEIC Score: 770/990 (Professional Working Prof
 ### AI Server Infrastructure Design -- "SaveMe!" Platform (2026)
 *Enterprise-Grade HPC/AI Infrastructure Architecture*
 
-- Architected a 4-tier server infrastructure (General, AI, Realtime, Storage servers) using Dell PowerEdge R760xd/R760xa to support **100,000 to 2,000,000 concurrent active users**
-- Designed AI Server spec: 2x Intel Xeon Gold 6760P (128 cores total), 1 TB DDR5 ECC RAM, **4x NVIDIA H100 PCIe 80 GB GPU**, 8x 3.84 TB NVMe (RAID10)
-- Prepared formal RAB (Rencana Anggaran Biaya) totaling **Rp 16,009,267,392** aligned with LKPP/INAPROC procurement standards with verified component pricing (per August 2026)
-- Tech Stack: Dell PowerEdge R760xa, NVIDIA H100, Intel Xeon Gold 6760P, DDR5 ECC RDIMM, NVMe RAID10, iDRAC9
+- Designed a 4-server on-premise stack (General, AI, Realtime, Storage) sized from per-service CPU/RAM/GPU/disk estimates for **100,000-150,000 active users**, with capacity tiers planned up to 1M
+- Rebalanced the AI node from storage to compute: 2x 32-core Xeon, 512 GB DDR5 ECC, **NVIDIA H200 NVL 141 GB**, NVMe RAID 1 -- cutting its estimated cost ~25% while adding 1.76x GPU memory and a GPU/RAM upgrade path
+- Planned the network and rack: L3 core switch with LACP-bonded SFP28 links and VLANs, isolated 1G iDRAC management network, dual A/B PDU power
+- Prepared the RAB (Rencana Anggaran Biaya) and a brand-neutral BOM/RFQ package for multi-vendor quotation
+- Tech Stack: NVIDIA H200 NVL, Dell PowerEdge, Intel Xeon (5th Gen), DDR5 ECC RDIMM, NVMe RAID 1/10, iDRAC9, L3 Switching (LACP/VLAN)
 
 ### Smart Tactical Body Camera -- Thesis Project (2025-2026)
 *IoT Edge Device & Real-Time Streaming*
@@ -128,16 +130,19 @@ Indonesian (Native) | English -- TOEIC Score: 770/990 (Professional Working Prof
 
 ## Certifications
 
-- **Computer Network Engineering** -- BNSP (Badan Nasional Sertifikasi Profesi) | 2025
-- **TOEIC English Proficiency** -- Score: 770/990 (Professional Working Level) | 2025
-- **Computer Engineering Training** -- P2KPTK2
+- **Computer Network Engineering** -- BNSP (Badan Nasional Sertifikasi Profesi) | 2022
+- **Junior Network Computer Technician** -- BNSP (Badan Nasional Sertifikasi Profesi) | 2025
+- **System & Network Administration** -- BNSP (Badan Nasional Sertifikasi Profesi) | 2026
+- **TOEIC English Proficiency** -- Score: 770/990 (Professional Working Level) | 2022
+- **Computer Engineering Training** -- P2KPTK2 | 2022
 
 ---
 
 ## Education
 
 **Gunadarma University** | Depok, Indonesia
-- **Bachelor of Computer System (S1)** | Sep 2022 -- Sep 2026 (Expected) | GPA: **3.89/4.00**
+- **Master of Electrical Engineering -- Information Technology (S2)** | 2026 -- Present
+- **Bachelor of Computer System (S1)** | Sep 2022 -- Sep 2026 | GPA: **3.89/4.00**
 - **Diploma (D3)** | Sep 2022 -- Aug 2025 | GPA: **3.89/4.00**
 - Recipient of Full Scholarship Program at Gunadarma University
 

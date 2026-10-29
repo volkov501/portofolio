@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, ArrowUpRight, Images, X, ChevronLeft, ChevronRight, Zap, Camera } from "lucide-react";
 import type { Project } from "@/lib/defaultData";
@@ -124,6 +125,16 @@ export default function Projects({ data }: { data: Project[] }) {
                       />
                       <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300 pointer-events-none" />
 
+                      {/* Black curtain lifts off the photo as the card scrolls in */}
+                      <motion.div
+                        aria-hidden="true"
+                        className="absolute inset-0 bg-black origin-top pointer-events-none"
+                        initial={{ scaleY: 1 }}
+                        whileInView={{ scaleY: 0 }}
+                        viewport={{ once: true, margin: "-80px" }}
+                        transition={{ duration: 1.1, delay: 0.15 + (index % 3) * 0.12, ease: [0.77, 0, 0.175, 1] }}
+                      />
+
                       {/* Multiple photos indicator */}
                       {imageCount > 1 && (
                         <div className="absolute bottom-3 right-3 flex items-center gap-1.5 bg-black/80 backdrop-blur-sm border border-white/20 text-white text-[10px] font-semibold uppercase tracking-[0.14em] px-2.5 py-1 rounded-full shadow-lg pointer-events-none">
@@ -186,15 +197,23 @@ export default function Projects({ data }: { data: Project[] }) {
 
                 {/* Card Action Links */}
                 <div className="mt-6 pt-5 border-t border-hairline group-hover:border-black/20 flex flex-wrap items-center justify-between gap-3 transition-colors duration-300">
-                  {project.liveUrl && project.liveUrl !== "#" ? (
+                  {project.caseStudyUrl ? (
+                    <Link
+                      href={project.caseStudyUrl}
+                      className="sx-arrow-link inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.17em] text-white group-hover:text-black transition-colors duration-300 hover:underline"
+                    >
+                      Read Case Study
+                      <ArrowUpRight className="w-4 h-4 sx-arrow" />
+                    </Link>
+                  ) : project.liveUrl && project.liveUrl !== "#" ? (
                     <a
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.17em] text-white group-hover:text-black transition-colors duration-300 hover:underline"
+                      className="sx-arrow-link inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.17em] text-white group-hover:text-black transition-colors duration-300 hover:underline"
                     >
                       View Live Project
-                      <ArrowUpRight className="w-4 h-4" />
+                      <ArrowUpRight className="w-4 h-4 sx-arrow" />
                     </a>
                   ) : (
                     <span className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.17em] text-white/30 group-hover:text-black/30 select-none">

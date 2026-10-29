@@ -58,6 +58,7 @@ export interface Project {
   image?: string;
   images?: string[];
   outcome?: string;
+  caseStudyUrl?: string;
 }
 
 export interface SkillCategory {
@@ -95,6 +96,8 @@ export interface EducationCertification {
   year: string;
   badge: string;
   color: "yellow" | "blue" | "secondary";
+  credentialUrl?: string; // scan/PDF of the certificate, e.g. /certificates/bnsp-2022.jpg
+  credentialId?: string; // certificate / registration number
 }
 
 export interface PortfolioData {
@@ -113,7 +116,7 @@ export const defaultPortfolioData: PortfolioData = {
     firstName: "Arrashi",
     lastName: "Satyadi",
     availabilityBadge: "AVAILABLE FOR HIRE",
-    bio: "Building enterprise-grade infrastructure from the ground up — Cisco networks, VMware/Proxmox hypervisors, AI server clusters (NVIDIA H100), and autonomous drone systems. Based in South Jakarta.",
+    bio: "Building enterprise-grade infrastructure from the ground up — Cisco networks, VMware/Proxmox hypervisors, on-premise AI servers (NVIDIA H200), and autonomous drone systems. Based in South Jakarta.",
     roles: [
       "Network Infrastructure Engineer",
       "IT Infrastructure Engineer",
@@ -127,15 +130,15 @@ export const defaultPortfolioData: PortfolioData = {
       { value: "3.89", label: "GPA" },
     ],
     resumeUrl: "/Arrashi_Satyadi_Resume_ATS.pdf",
-    techLabels: ["OSPF/BGP", "VMware ESXi", "H100 GPU", "ArduPilot"],
+    techLabels: ["OSPF/BGP", "VMware ESXi", "H200 NVL", "ArduPilot"],
   },
 
   about: {
     paragraphs: [
-      "I'm a <primary>Network & IT Infrastructure Engineer</primary> based in South Jakarta with 3+ years of hands-on experience across enterprise server administration, Cisco networking, virtualization, and AIoT systems.",
-      "My work spans from managing <secondary>10+ IBM enterprise servers</secondary> and deploying <secondary>50+ VMs</secondary> on VMware ESXi/Proxmox, to architecting a <primary>Rp 16 Billion AI server infrastructure</primary> with NVIDIA H100 GPUs capable of supporting 2,000,000 concurrent users.",
+      "I'm a <primary>Network & IT Infrastructure Engineer</primary> based in South Jakarta with 3+ years of hands-on experience across enterprise server administration, Cisco networking, virtualization, containers, and AIoT systems. I currently work as <primary>IoT Engineer & Server Manager</primary> at Mitra Teknologi Gemilang.",
+      "My work spans from managing <secondary>10+ IBM enterprise servers</secondary> and deploying <secondary>50+ VMs</secondary> on VMware ESXi/Proxmox, to designing the <primary>on-premise AI server infrastructure</primary> for the SaveMe! platform — four dedicated servers, including an NVIDIA H200 GPU node, sized for 100,000–150,000 active users and built to scale.",
       "On the frontier side, I engineer <secondary>autonomous drone systems</secondary> using ArduPilot/MAVLink for real-time crowd monitoring, and build embedded AIoT devices that bridge physical sensors with centralized cloud infrastructure.",
-      "I hold a <primary>BNSP National Certification in Computer Network Engineering</primary> (2025), a TOEIC score of <primary>770/990</primary>, and am completing my Bachelor's at Gunadarma University (GPA: 3.89/4.00) on a full scholarship.",
+      "I hold <primary>three BNSP national certifications</primary> in network engineering and system administration (2022–2026) and a TOEIC score of <primary>770/990</primary>. I graduated from Gunadarma University with a Bachelor's in Computer Systems (GPA 3.89/4.00, full scholarship) and am now pursuing a <primary>Master's in Electrical Engineering (Information Technology)</primary> at Gunadarma.",
     ],
     badges: [
       { label: "BNSP Certified", color: "text-secondary border-secondary/30 bg-secondary/5" },
@@ -145,8 +148,8 @@ export const defaultPortfolioData: PortfolioData = {
     ],
     highlights: [
       { title: "RELIABILITY", desc: "99%+ uptime across 10+ IBM enterprise servers. High-availability infrastructure design.", color: "primary" },
-      { title: "INNOVATION", desc: "VTOL drone R&D, ESP32 AIoT pipelines, and NVIDIA H100 AI server architecture.", color: "secondary" },
-      { title: "SCALE", desc: "Designed infrastructure supporting 2,000,000 concurrent users. Budget: Rp 16B+.", color: "yellow" },
+      { title: "INNOVATION", desc: "VTOL drone R&D, ESP32 AIoT pipelines, and on-premise NVIDIA H200 AI server design.", color: "secondary" },
+      { title: "SCALE", desc: "Capacity-planned server tiers from 50K to 1M active users, based on per-service CPU, RAM, GPU and disk estimates.", color: "yellow" },
       { title: "VERSATILITY", desc: "Spanning Cisco networking, VMware/Proxmox virtualization, IoT, and autonomous drones.", color: "purple" },
     ],
   },
@@ -155,17 +158,19 @@ export const defaultPortfolioData: PortfolioData = {
     {
       company: "Mitra Teknologi Gemilang (MTG)",
       location: "Depok, Indonesia",
-      role: "Autonomous Drone & AIoT Engineer",
+      role: "IoT Engineer & Server Manager",
       type: "Contract",
-      period: "Jan 2026 – Sep 2026",
+      period: "Jan 2026 – Present",
       color: "primary",
       achievements: [
+        "Lead server infrastructure planning for the SaveMe! platform: capacity-planned 4 dedicated servers (General, AI, Realtime, Storage) for 100K–150K active users, including an NVIDIA H200 NVL AI node.",
+        "Designed the rack network and power for Tier-3 colocation (L3 core switch with LACP/VLAN, isolated iDRAC management, dual A/B PDU) and prepared the RAB, brand-neutral BOM/RFQ and vendor evaluation.",
         "Engineered autonomous drone systems (ArduPilot/MAVLink) for real-time crowd monitoring and riot detection at large-scale events, achieving reliable HD video and sub-200ms telemetry transmission.",
         "Developed end-to-end AIoT data pipelines integrating embedded systems (ESP32, M10Q GPS, Flight Controllers) with cloud databases via WebSockets, bridging field hardware with centralized server infrastructure.",
         "Spearheaded VTOL R&D (QuadPlane/Tilt-Rotor designs), leading transition from standard multirotors to enhance aerodynamic efficiency and extend autonomous patrol duration by ~40%.",
         "Optimized Command & Control (C2) networks by implementing custom RF protocols to maintain robust, low-latency command links in high-RF-interference environments.",
       ],
-      tags: ["ArduPilot", "MAVLink", "VTOL", "AIoT", "ESP32", "WebSockets"],
+      tags: ["Server Management", "NVIDIA H200", "Capacity Planning", "ArduPilot", "MAVLink", "VTOL", "AIoT", "ESP32", "WebSockets"],
     },
     {
       company: "LePKom, Gunadarma University",
@@ -233,15 +238,15 @@ export const defaultPortfolioData: PortfolioData = {
     {
       title: 'AI Server Infrastructure — "SaveMe!" Platform',
       description:
-        "Architected enterprise-grade 4-tier server infrastructure (General, AI, Realtime, Storage) using Dell PowerEdge R760xd/R760xa to support 100,000–2,000,000 concurrent active users. AI Server: 2x Intel Xeon Gold 6760P, 4x NVIDIA H100 PCIe 80GB, 1TB DDR5 ECC RAM. Prepared formal RAB totaling Rp 16,009,267,392 aligned with LKPP/INAPROC procurement standards.",
-      tags: ["Dell PowerEdge R760xa", "NVIDIA H100", "Xeon Gold", "DDR5 ECC", "NVMe RAID10", "iDRAC9", "LKPP"],
+        "Designed the on-premise stack for the SaveMe! platform: 4 dedicated servers (General, AI, Realtime, Storage) sized from per-service estimates for 100K–150K active users. AI node: 2x 32-core Xeon, 512 GB DDR5 ECC and an NVIDIA H200 NVL 141 GB, with room to add GPUs. Network: L3 core switch with LACP and VLANs, isolated iDRAC management, dual A/B power. Delivered the RAB and a brand-neutral BOM/RFQ.",
+      tags: ["NVIDIA H200 NVL", "Dell PowerEdge", "Capacity Planning", "LACP / VLAN", "iDRAC OOB", "NVMe RAID", "BOM / RFQ"],
       badge: "HPC / AI INFRA",
       badgeColor: "text-yellow-400 bg-yellow-400/10 border-yellow-400/30",
       iconColor: "yellow",
       highlight: true,
       liveUrl: "#",
-      image: "/projects/ai-server-h100.jpg",
-      outcome: "Rp 16M+ Official LKPP Procurement | 2,000,000 Concurrent User Architecture",
+      caseStudyUrl: "/case-study/saveme",
+      outcome: "Sized for 100K–150K Active Users | AI Node Rebalanced to H200: ~25% Lower Est. Cost, 1.76× GPU Memory",
     },
     {
       title: "Smart Tactical Body Camera",
@@ -385,10 +390,10 @@ export const defaultPortfolioData: PortfolioData = {
       title: "HPC & AI Infrastructure",
       color: "yellow",
       skills: [
-        "Dell PowerEdge R760xa/xd", "NVIDIA H100 GPU", "Intel Xeon Gold",
-        "DDR5 ECC RDIMM", "NVMe RAID10", "Data Center Ops",
-        "High Availability (HA)", "Server Rack Design", "Budget Planning (RAB)",
-        "LKPP / INAPROC", "Enterprise Storage",
+        "Dell PowerEdge R760xa", "NVIDIA H200 / H100 GPU", "Intel Xeon Gold",
+        "DDR5 ECC RDIMM", "NVMe RAID 1/10", "Capacity Planning", "Data Center Ops",
+        "High Availability (HA)", "Rack & Power Design (A/B PDU)", "Budget Planning (RAB)",
+        "BOM / RFQ & Vendor Evaluation", "Enterprise Storage",
       ],
     },
     {
@@ -460,7 +465,8 @@ export const defaultPortfolioData: PortfolioData = {
       school: "Gunadarma University",
       location: "Depok, Indonesia",
       degrees: [
-        { level: "S1 — Bachelor of Computer System", period: "Sep 2022 – Sep 2026 (Expected)", gpa: "3.89 / 4.00" },
+        { level: "S2 — Master of Electrical Engineering (Information Technology)", period: "2026 – Present", gpa: null },
+        { level: "S1 — Bachelor of Computer System", period: "Sep 2022 – Sep 2026", gpa: "3.89 / 4.00" },
         { level: "D3 — Diploma, Computer System", period: "Sep 2022 – Aug 2025", gpa: "3.89 / 4.00" },
       ],
       highlight: "Full Scholarship Recipient",
@@ -478,8 +484,10 @@ export const defaultPortfolioData: PortfolioData = {
   ],
 
   educationCerts: [
-    { title: "Computer Network Engineering", issuer: "BNSP — Badan Nasional Sertifikasi Profesi", year: "2025", badge: "NATIONAL CERT", color: "yellow" },
-    { title: "TOEIC English Proficiency", issuer: "Score: 770 / 990 — Professional Working Level", year: "2025", badge: "LANGUAGE", color: "blue" },
-    { title: "Computer Engineering Training", issuer: "P2KPTK2", year: "2023", badge: "TRAINING", color: "secondary" },
+    { title: "Computer Network Engineering", issuer: "BNSP — Badan Nasional Sertifikasi Profesi", year: "2022", badge: "NATIONAL CERT", color: "yellow" },
+    { title: "TOEIC English Proficiency", issuer: "Score: 770 / 990 — Professional Working Level", year: "2022", badge: "LANGUAGE", color: "blue" },
+    { title: "Computer Engineering Training", issuer: "P2KPTK2", year: "2022", badge: "TRAINING", color: "secondary" },
+    { title: "Junior Network Computer Tech.", issuer: "BNSP — Badan Nasional Sertifikasi Profesi", year: "2025", badge: "NATIONAL CERT", color: "yellow" },
+    { title: "System & Network Administration", issuer: "BNSP — Badan Nasional Sertifikasi Profesi", year: "2026", badge: "NATIONAL CERT", color: "yellow" },
   ],
 };

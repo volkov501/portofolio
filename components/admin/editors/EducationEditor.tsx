@@ -180,6 +180,8 @@ export default function EducationEditor({ data, certs, onChange }: Props) {
                     {certColorOptions.map(c => <option key={c} value={c}>{certColorLabels[c]}</option>)}
                   </select>
                 </div>
+                <input className={inputCls} value={cert.credentialUrl ?? ""} onChange={e => updateCert(i, "credentialUrl", e.target.value)} placeholder="Certificate file, e.g. /certificates/bnsp-2022.jpg" />
+                <input className={inputCls} value={cert.credentialId ?? ""} onChange={e => updateCert(i, "credentialId", e.target.value)} placeholder="Certificate No. (optional)" />
               </div>
             </div>
           ))}

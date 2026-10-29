@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Fira_Code, Barlow, Barlow_Condensed } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import MotionProvider from "@/components/motion/MotionProvider";
 import "./globals.css";
 
 const inter = Inter({
@@ -44,7 +45,7 @@ export const metadata: Metadata = {
     "Infrastructure Architect",
     "Cisco",
     "VMware",
-    "H100",
+    "AI Server Infrastructure",
   ],
   authors: [{ name: "Arrashi Satyadi" }],
   creator: "Arrashi Satyadi",
@@ -86,7 +87,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${firaCode.variable} ${barlow.variable} ${barlowCondensed.variable} font-sans bg-background text-slate-200 antialiased`}
       >
-        {children}
+        <MotionProvider>{children}</MotionProvider>
         <Analytics />
         <SpeedInsights />
       </body>

@@ -75,7 +75,8 @@
   letter-spacing: 0.09em;
   color: #fff;
   background: transparent;
-  transition: background-color 0.33s, color 0.33s, border-color 0.33s;
+  transition: background-color 0.5s cubic-bezier(0.19, 1, 0.22, 1), color 0.5s cubic-bezier(0.19, 1, 0.22, 1),
+    border-color 0.5s;
 }
 .sx-ghost:hover {
   background: #f0f0fa;
@@ -95,4 +96,89 @@
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
+}
+
+/* ── SpaceX-style motion (timings taken from spacex.com) ───────────────── */
+
+/* Page-load reveal: headline rises in, then subheader (+0.5s), then CTA (+1s) */
+@keyframes sx-reveal-header {
+  0% { opacity: 0; transform: translateY(220%); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes sx-reveal-sub {
+  0% { opacity: 0; transform: translateY(80%); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes sx-reveal-btn {
+  0% { opacity: 0; transform: translateY(300%); }
+  100% { opacity: 1; transform: none; }
+}
+.sx-reveal-header,
+.sx-reveal-sub,
+.sx-reveal-btn {
+  animation-duration: 0.75s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: backwards;
+}
+.sx-reveal-header { animation-name: sx-reveal-header; }
+.sx-reveal-sub { animation-name: sx-reveal-sub; animation-delay: 0.5s; }
+.sx-reveal-btn { animation-name: sx-reveal-btn; animation-delay: 1s; }
+
+/* Slow settle of the full-bleed hero photo, standing in for SpaceX's launch video */
+@keyframes sx-hero-settle {
+  from { transform: scale(1.12); opacity: 0; }
+  20% { opacity: 1; }
+  to { transform: scale(1); opacity: 1; }
+}
+.sx-hero-settle {
+  animation: sx-hero-settle 6s cubic-bezier(0.19, 1, 0.22, 1) both;
+  will-change: transform;
+}
+
+/* Bouncing "scroll" chevron at the bottom of the hero */
+@keyframes sx-scroll-cue {
+  0% { opacity: 1; transform: translateY(-35px); }
+  100% { opacity: 0; }
+}
+.sx-scroll-cue {
+  animation: sx-scroll-cue 3s infinite;
+}
+
+/* Ghost button / arrow link hover: arrow slides out to the right, back in from the left */
+@keyframes sx-arrow-out {
+  0% { transform: translateX(0); opacity: 1; }
+  100% { transform: translateX(10px); opacity: 0; }
+}
+@keyframes sx-arrow-in {
+  0% { transform: translateX(-10px); opacity: 1; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+.sx-ghost:hover .sx-arrow,
+.sx-arrow-link:hover .sx-arrow {
+  animation: sx-arrow-out 0.2s ease forwards, sx-arrow-in 0.4s ease 0.2s forwards;
+}
+
+/* Scroll-driven motion, like spacex.com's animation-timeline: view() cards */
+@supports (animation-timeline: scroll()) {
+  @keyframes sx-parallax {
+    to { transform: translateY(22%); }
+  }
+  .sx-parallax {
+    animation: sx-parallax linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 100vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sx-reveal-header,
+  .sx-reveal-sub,
+  .sx-reveal-btn,
+  .sx-hero-settle,
+  .sx-scroll-cue,
+  .sx-parallax,
+  .sx-ghost .sx-arrow,
+  .sx-arrow-link .sx-arrow {
+    animation: none !important;
+  }
 }
